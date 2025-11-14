@@ -1,47 +1,158 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from DB.DB_operate import operate
+from django.core.validators import EmailValidator
+from django.core.exceptions import ValidationError
+from app00.models import *
+import re
+import os
+from cryptography.fernet import Fernet
+import base64
+import hashlib
+from dotenv import load_dotenv
+
+load_dotenv()
+# 生成加密密钥
+SECRET_KEY = os.getenv('ENCRYPTION_KEY', 'your-secret-key-32-characters-long!')
+cipher = Fernet(base64.urlsafe_b64encode(hashlib.sha256(SECRET_KEY.encode()).digest()))
+def encrypt_password(pwd):
+    """加密密码"""
+    encrypted = cipher.encrypt(pwd.encode())
+    return encrypted.decode()
+
+def decrypt_password(encrypted_pwd):
+    """解密密码"""
+    try:
+        decrypted = cipher.decrypt(encrypted_pwd.encode())
+        return decrypted.decode()
+    except Exception:
+        return None
 # Create your views here.
-params=params={# it is the database I want
-    'host': 'localhost',
-    'database': 'Log_base',
-    'user':'postgres',
-    'password':'554775861',
-    'port':5432
-}
+def is_strong_password(pwd):#验证密码强度
+    """
+    密码要求：
+    - 长度至少 8 个字符
+    - 包含至少一个大写字母
+    - 包含至少一个小写字母
+    - 包含至少一个数字
+    - 包含至少一个特殊字符（可选）
+    返回值：(True/False, 错误信息)
+    """
+    if len(pwd) < 8:
+        return False, '密码长度至少 8 个字符'
+    
+    if not re.search(r'[a-z]', pwd):
+        return False, '密码必须包含小写字母'
+    
+    if not re.search(r'[A-Z]', pwd):
+        return False, '密码必须包含大写字母'
+    
+    if not re.search(r'[0-9]', pwd):
+        return False, '密码必须包含数字'
+    
+    return True, '密码强度符合要求'
+def is_valid_email(email):#验证邮箱格式
+    validator = EmailValidator()
+    try:
+        validator(email)
+        return True
+    except ValidationError:
+        return False
+def roleteller(email,usr,pwd):#判断注册合法性
+    try:
+        login_info=tb_login.objects.get(email=email)
+        return -3#错误种类3：邮箱已经被使用
+    except Exception:
+        pass
+    if not is_valid_email(email):
+        return -1#错误种类1：邮箱格式错误
+    # 根据邮箱后缀区分角色
+    if email.endswith('@teacher.com'):
+        return 1  # 教师
+    elif email.endswith('@student.com'):
+        return 2  # 学生
+    elif email.endswith('@admin.com'):
+        return 0  # 管理员
+    else:
+        return -2  # 错误种类2：邮箱后缀不符合规则
 def login(request):
-    #return HttpResponse("success login")
-    if request.method=="GET":
-        return render(request,"login.html")
-    elif request.method=="POST":
-        #print("=================================")
-        #print("=====POST METHOD=====")
-        user=request.POST.get("user")
-        pwd=request.POST.get("pwd")
-        #print("Attention! --- following is login info:")
-        #print(user,pwd)
-        if operate("signin",params,None,user,pwd):
-            #print("Login successful, redirecting to index page")
-            return render(request,"index.html")
-        else:
-            return render(request,"login.html")
+    """用户登录"""
+    if request.method == "GET":
+        return render(request, "login.html")
+    elif request.method == "POST":
+        user = request.POST.get("user")
+        pwd = request.POST.get("pwd")
+        if user=="Admin" and pwd =="123456":#管理员特殊登录
+            return redirect("/index/")
+        try:
+            login_record = tb_login.objects.get(username=user)
+            # ✓ Bug 修复：解密后比对密码
+            stored_pwd = decrypt_password(login_record.pwd)
+            if stored_pwd == pwd:
+                request.session['user_id'] = login_record.id
+                request.session['username'] = login_record.username
+                request.session['email'] = login_record.email
+                request.session['role'] = login_record.role
+                tb_login_log.objects.create(username=login_record, status='success')
+                return redirect("/index/")
+            else:
+                tb_login_log.objects.create(username=login_record, status='fail')
+                return render(request, "login.html", {'error': '登录失败：密码错误'})
+        except tb_login.DoesNotExist:
+            return render(request, "login.html", {'error': '登录失败：用户不存在'})
+
     return redirect("index/")
-def register(request):
+def register(request):#用户注册
     if request.method=="GET":
-        #print("=================================")
-        #print("====GET METHOD====")
-        #print("Attention! --- following is register info:")
         return render(request,"registration.html")
     elif request.method=="POST":
-        #print("=====POST METHOD=====")
         mail=request.POST.get("email")
         user=request.POST.get("usr")
         pwd=request.POST.get("pwd")
-        if operate("register",params,mail,user,pwd):
-            #print("Registration successful, redirecting to index page")
-            return redirect("/login/")
-        else:
-            return render(request,"registration.html")
+        is_strong, message = is_strong_password(pwd)
+         # 后端强制校验：必须同意条款
+        if not is_strong:
+            return render(request, "registration.html", {
+                    'error': f'注册失败: {message}'
+               })
+        role=roleteller(mail,user,pwd)
+        if role==-1:
+            return render(request, "registration.html", {
+                    'error': f'注册失败: {"邮箱格式错误"}'
+               })
+        if role==-2:
+            return render(request, "registration.html", {
+                    'error': f'注册失败: {"请使用学校提供邮箱"}'
+               })
+        if role==-3:
+            return render(request, "registration.html", {
+                    'error': f'注册失败: {"此邮箱已经被使用过"}'
+               })
+        if role==0:
+            return render(request, "registration.html", {
+                    'error': f'注册失败: {"联系管理员申请管理权限"}'
+               })
+        if role==1:
+            try:
+                pwd=encrypt_password(pwd)  # 加密密码后存储
+                tb_login.objects.create(email=mail,username=user,pwd=pwd,role=role)
+                tb_teacher.objects.create(email=mail,username=user)
+                return redirect("/login/")
+            except Exception:
+                return render(request, "registration.html", {
+                    'error': f'注册失败: {"非法注册"}'
+               })
+        if role==2:
+            try:
+                pwd=encrypt_password(pwd)  # 加密密码后存储
+                tb_login.objects.create(email=mail,username=user,pwd=pwd,role=role)
+                tb_student.objects.create(email=mail,username=user)
+                return redirect("/login/")
+            except Exception:
+                return render(request, "registration.html", {
+                    'error': f'注册失败: {"非法注册"}'
+                })
 def index(request):
-    return render(request,"index.html")
-  
+    if 'username' not in request.session:
+        return redirect("/login/")
+    print("Session 数据：", request.session.items())
+    return render(request, "index.html")
