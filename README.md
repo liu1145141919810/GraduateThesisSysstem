@@ -14,6 +14,8 @@
 
 ### 0.4 禁止了非勾选提交，/index/会话管理,/index/展示会话数据测试
 
+### 0.5 静态文件更新，消息通知栏跳转，简易展示，路径问题调试
+
 ## 学习日志
 
 ### 1插入内容
@@ -64,3 +66,11 @@ request.session['user_id'] = login_record.id
 ### 9 会话数据在.html使用
 
 {{request.session.username}}
+
+### 10 选项栏内容在
+
+ui-buttons.html
+
+### 11 路径正确生成器
+
+path("index/<str:page>.html", views.index_page, name="index_page"),

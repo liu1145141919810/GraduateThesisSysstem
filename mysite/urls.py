@@ -23,5 +23,6 @@ urlpatterns = [
     path('index/',views.index),
     path("login/",views.login),
     path('register/',views.register,name='register'),#significant working form
+    path("index/<str:page>.html", views.index_page, name="index_page"),
     #path('admin/', admin.site.urls),
 ]

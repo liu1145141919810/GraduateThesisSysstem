@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.core.validators import EmailValidator
 from django.core.exceptions import ValidationError
+from django.template.loader import get_template
+from django.http import Http404
 from app00.models import *
 import re
 import os
@@ -151,8 +153,23 @@ def register(request):#用户注册
                 return render(request, "registration.html", {
                     'error': f'注册失败: {"非法注册"}'
                 })
+def index_page(request, page):
+    if 'username' not in request.session:
+        return redirect("/login/")
+    # 假设模板放在 templates/ 下且文件名是 ui-buttons.html、ui-panels.html 等
+    template_name = f"{page}.html"
+
+    # 可选：先检查模板是否存在，避免没有模板时报 500
+    try:
+        get_template(template_name)
+    except Exception:
+        raise Http404("Page not found")
+
+    return render(request, template_name)
 def index(request):
     if 'username' not in request.session:
         return redirect("/login/")
     print("Session 数据：", request.session.items())
+    if request.method == "POST":
+       pass
     return render(request, "index.html")
