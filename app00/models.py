@@ -42,6 +42,13 @@ class tb_login_log(models.Model):#登录日志
 
 class tb_notice(models.Model):#通知表
     id = models.AutoField(primary_key=True)
+    read = models.BooleanField(default=False)
+    send = models.BooleanField(default=False)
+    host = models.ForeignKey(tb_login, on_delete=models.CASCADE, related_name='notices_sent', null=True, blank=True)
+    recipient = models.ForeignKey(tb_login, on_delete=models.CASCADE, related_name='notices_received', null=True, blank=True)
+    subject = models.CharField(max_length=100, default='No subject')
+    message = models.TextField(default='No message')
+    timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 """
 python manage.py makemigrations
 python manage.py migrate

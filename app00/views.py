@@ -164,7 +164,36 @@ def index_page(request, page):
         get_template(template_name)
     except Exception:
         raise Http404("Page not found")
-
+    
+    if page == "compose":#通知发送页面特殊处理
+        print("方法：", request.method)
+        print("Compose 页面特殊处理")
+        if request.method == "GET":
+            return render(request, template_name)
+        elif request.method == "POST":
+            To = request.POST.get("to")
+            subject = request.POST.get("subject")
+            message = request.POST.get("message")
+            try:
+                sender_id = request.session.get('user_id')
+                sender = tb_login.objects.get(id=sender_id)
+                recipient = tb_login.objects.get(username=To)
+                tb_notice.objects.create(
+                    host=sender,
+                    recipient=recipient,
+                    subject=subject,
+                    message=message,
+                    send=True
+                )
+                print("通知发送成功")
+                return render(request, "inbox.html", {'success': '编写成功'})
+            except tb_login.DoesNotExist:
+                return render(request, "compose.html", {'error': '编写失败：收件人不存在'})
+            return render(request,"inbox.html")
+        
+    if page == "inbox":
+        print("方法：", request.method)
+        print("Inbox 页面特殊处理")
     return render(request, template_name)
 def index(request):
     if 'username' not in request.session:

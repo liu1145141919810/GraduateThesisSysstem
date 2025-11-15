@@ -75,11 +75,11 @@
                     </ul>
                 </li>
 
-                <li class="menu-list  nav-active"><a href="#"><i class="icon-envelope-open"></i> <span>Mail</span></a>
+                <li class="menu-list  nav-active"><a href="#"><i class="icon-envelope-open"></i> <span>通知</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="inbox.html"> Inbox</a></li>
-                        <li class="active"><a href="compose.html"> Compose Mail</a></li>
-                        <li><a href="message-view.html"> View Mail</a></li>
+                        <li><a href="inbox.html">发送通知</a></li>
+                        <li class="active"><a href="compose.html"> 编写通知</a></li>
+                        <li><a href="message-view.html"> 查看通知</a></li>
                     </ul>
                 </li>
 
@@ -274,42 +274,42 @@
 						 <li class="message-list message-scroll-list">
                           <a href="#">
                               <span class="photo"> <img src="/static/images/users/avatar-8.jpg" class="img-circle" alt="img"></span>
-                              <span class="subject">John Doe</span>
+                              <span class="subject">Kobe Bryant</span>
                               <span class="message"> New tasks needs to be done</span>
                                <span class="time">15 minutes ago</span>
                           </a>
                           
                           <a href="#">
                               <span class="photo"> <img src="/static/images/users/avatar-7.jpg" class="img-circle" alt="img"></span>
-                              <span class="subject">John Doe</span>
+                              <span class="subject">Kobe Bryant</span>
                               <span class="message"> New tasks needs to be done</span>
                                <span class="time">10 minutes ago</span>
                           </a>
                         
                           <a href="#">
                               <span class="photo"> <img src="/static/images/users/avatar-6.jpg" class="img-circle" alt="img"></span>
-                               <span class="subject">John Doe</span>
+                               <span class="subject">Kobe Bryant</span>
                                <span class="message"> New tasks needs to be done</span>
                               <span class="time">20 minutes ago</span>
                           </a>
                          
                           <a href="#">
                               <span class="photo"> <img src="/static/images/users/avatar-6.jpg" class="img-circle" alt="img"></span>
-                               <span class="subject">John Doe</span>
+                               <span class="subject">Kobe Bryant</span>
                                <span class="message"> New tasks needs to be done</span>
                               <span class="time">20 minutes ago</span>
                           </a>
                         
                           <a href="#">
                               <span class="photo"> <img src="/static/images/users/avatar-6.jpg" class="img-circle" alt="img"></span>
-                               <span class="subject">John Doe</span>
+                               <span class="subject">Kobe Bryant</span>
                                <span class="message"> New tasks needs to be done</span>
                               <span class="time">20 minutes ago</span>
                           </a>
                           
                           <a href="#">
                               <span class="photo"> <img src="/static/images/users/avatar-6.jpg" class="img-circle" alt="img"></span>
-                               <span class="subject">John Doe</span>
+                               <span class="subject">Kobe Bryant</span>
                                <span class="message"> New tasks needs to be done</span>
                               <span class="time">20 minutes ago</span>
                           </a>
@@ -321,7 +321,7 @@
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <img src="/static/images/users/avatar-6.jpg" alt="" />
-                            John Doe
+                            Kobe Bryant
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
@@ -363,61 +363,51 @@
            
                   <!--Start row-->
                     <div class="row">
-                       <div class="col-md-12">
-                       
-                        
-                       <div class="row">
-                        <div class="col-md-3">
-                          <a href="inbox.html" class="btn btn-primary outline-btn btn-block m-b-10">Back to Inbox</a>
-                            <ul class="list-unstyled mailbox-nav">
-                                <li class="active"><a href="inbox.html"><i class="fa fa-inbox"></i>Inbox <span class="badge badge-success">4</span></a></li>
-                                <li><a href="#"><i class="fa fa-sign-out"></i>Sent</a></li>
-                                <li><a href="#"><i class="fa fa-file-text-o"></i>Draft</a></li>
-                                <li><a href="#"><i class="fa fa-exclamation-circle"></i>Spam</a></li>
-                                <li><a href="#"><i class="fa fa-trash"></i>Trash</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-9">
-                          <div class="white-box">
-                            <div class="mailbox-content">
-                            
-                             <div class="mailbox-header">
-                                  <div class="compose-options">
-                                        <div class="pull-right">
-                                            <a href="inbox.html" class="btn btn-default"><i class="fa fa-trash m-r-5"></i>Discard</a>
-                                        </div>
-                                 </div>
-                            </div>
-                            
-                                <div class="compose-body">
-                                    <form class="row">
-                                        <div class="form-group">
-                                            <label for="to" class="col-md-2 control-label">To</label>
-                                            <div class="col-md-10">
-                                                <input type="text" class="form-control" id="to">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="subject" class="col-md-2 control-label">Subject</label>
-                                            <div class="col-md-10">
-                                                <input type="text" class="form-control" id="subject">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="compose-message">
-                                    <div class="summernote"></div>
-                                </div>
-                                <div class="compose-options">
-                                    <div class="pull-right">
-                                        <a href="inbox.html" class="btn btn-primary"><i class="fa fa-send"></i> Send</a>
-                                    </div>
+                    <div class="col-md-12">
+                    <div class="white-box">
+                        <form method="POST" class="row">
+                        {% csrf_token %}
+                        <div class="mailbox-content">
+
+                            <div class="mailbox-header">
+                            <div class="compose-options">
+                                <div class="pull-right">
+                                <a href="inbox.html" class="btn btn-default"><i class="fa fa-trash m-r-5"></i>Discard</a>
                                 </div>
                             </div>
+                            </div>
+
+                            <div class="compose-body">
+                            <div class="form-group row">
+                                <label for="to" class="col-md-2 control-label">To</label>
+                                <div class="col-md-10">
+                                <input type="text" class="form-control" id="to" name="to">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="subject" class="col-md-2 control-label">Subject</label>
+                                <div class="col-md-10">
+                                <input type="text" class="form-control" id="subject" name="subject">
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="compose-message">
+                            <!-- 使用带 name 的 textarea，summernote 会接管它 -->
+                            <textarea name="message" class="summernote"></textarea>
+                            </div>
+
+                            <div class="compose-options">
+                            <div class="pull-right">
+                                <input id="signup-btn" type="submit" value="Send" class="btn btn-primary btn-block">
+                            </div>
+                            </div>
+
                         </div>
-                          </div>
-                       </div>
-                      </div>
+                        </form>
+                    </div>
+</div>
                     </div>
                     <!--End row-->
                 
@@ -448,7 +438,14 @@
 	<script src="/static/plugins/summernote-master/summernote.min.js"></script>
     <script src="/static/pages/compose.js"></script>
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-   
+    <!-- 在页面底部（已包含 summernote JS）后加上初始化脚本 -->
+    <script>
+    $(document).ready(function(){
+        $('.summernote').summernote({
+        height: 200
+        });
+    });
+    </script>
 
 </body>
 
