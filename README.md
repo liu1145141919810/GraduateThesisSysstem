@@ -1,6 +1,6 @@
 # DB大作业（课题系统）
 
-## 实现版本 0.4
+## 实现版本 0.5
 
 ## 更新操作
 
@@ -76,6 +76,7 @@ ui-buttons.html
 ### 11 路径正确生成器
 
 path("index/<str:page>.html", views.index_page, name="index_page"),
+<<<<<<< HEAD
 
 ### 12 记录，通知页面静态文件
 
@@ -122,3 +123,5 @@ python manage.py migrate
 ### 17 时间属性的加入
 
 timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+=======
+>>>>>>> 94c3cb0af3ae72820f078794fb2226d27b8c3ce1
