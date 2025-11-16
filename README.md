@@ -1,6 +1,6 @@
 # DB大作业（课题系统）
 
-## 实现版本 0.5
+## 实现版本 0.7
 
 ## 更新操作
 
@@ -17,6 +17,8 @@
 ### 0.5 静态文件更新，消息通知栏跳转，简易展示，路径问题调试
 
 ### 0.6 消息界面调试，消息数据库构造，编写消息存入数据库
+
+### 0.7 消息存在性检测，inbox待发送的展示，发送操作和删除
 
 ## 学习日志
 
@@ -125,3 +127,33 @@ python manage.py migrate
 timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 =======
 >>>>>>> 94c3cb0af3ae72820f078794fb2226d27b8c3ce1
+
+### 18 正确跳转新页面
+
+return redirect("/index/inbox.html")
+
+### 19 html在Dijango里可以使用如下的循环
+
+{% for item in items %}
+    <p>{{ item }}</p>
+{% endfor %}
+
+### 20 测试：重新运行不需要打开新的界面
+
+### 21 实现返回选中ID:
+
+html:
+<div class="checkbox">
+    <input type="checkbox" class="checkbox-mail" name="selected_ids" value="{{ notice.id }}">
+    <label></label>
+</div>
+会返回一个序列
+之后使用 selected_ids = request.POST.getlist('selected_ids')检索即可
+
+### 22 包含多行记录的查询集示例
+qs = tb_notice.objects.filter(id__in=ids, host=user)
+
+### 23 删除
+qs.delete()
+
+### 21 中notice来自外界所以要指示为{{notice.id}},即勾选之后就返回该notice的id值

@@ -178,22 +178,81 @@ def index_page(request, page):
                 sender_id = request.session.get('user_id')
                 sender = tb_login.objects.get(id=sender_id)
                 recipient = tb_login.objects.get(username=To)
+                if sender == recipient:
+                    return render(request, "compose.html", {'error': '编写失败：不能给自己发送通知'})
+                 # 创建并保存通知记录
                 tb_notice.objects.create(
                     host=sender,
                     recipient=recipient,
                     subject=subject,
                     message=message,
-                    send=True
+                    send=False
                 )
                 print("通知发送成功")
-                return render(request, "inbox.html", {'success': '编写成功'})
+                # 在 session 中标记成功消息，重定向到 inbox 页面对应的 URL
+                request.session['success'] = '编写成功'
+                return redirect("/index/inbox.html")
             except tb_login.DoesNotExist:
                 return render(request, "compose.html", {'error': '编写失败：收件人不存在'})
-            return render(request,"inbox.html")
         
-    if page == "inbox":
-        print("方法：", request.method)
-        print("Inbox 页面特殊处理")
+    if page == "inbox":#提取该用户发送的数据库通知
+        # 先获取当前用户
+        user_id = request.session.get('user_id')
+        sent_notices = []
+        user = None
+        try:
+            if user_id:
+                user = tb_login.objects.get(id=user_id)
+        except Exception:
+            user = None
+
+        # 处理 POST 操作（批量操作：标为已读/未读、删除）
+        if request.method == "POST":
+            action = request.POST.get('action')
+            selected_ids = request.POST.getlist('selected_ids')
+            print("Inbox POST 操作", action, "选中：", selected_ids)
+            send=request.POST.get('send')
+            edit=request.POST.get('edit')
+            view=request.POST.get('view')
+            delete=request.POST.get('delete')
+            print("按钮状态：",send,edit,view,delete)
+            if user and selected_ids:
+                try:
+                    # 将 id 字符串转为整数列表
+                    ids = [int(x) for x in selected_ids if x.isdigit()]
+                    qs = tb_notice.objects.filter(id__in=ids, host=user)
+                    if send != None:
+                        qs.update(send=True)
+                        print("发送成功")
+                        request.session['success'] = '所选通知已发送'
+                    elif edit !=None:
+                        pass
+                        #request.session['success'] = '所选通知已标为未读'
+                    elif view !=None:
+                        pass
+                        #deleted_count = qs.count()
+                        #qs.delete()
+                        #request.session['success'] = f'已删除 {deleted_count} 条通知'
+                    elif delete !=None:
+                        qs.delete()
+                        request.session['success'] = f'已删除所选通知'
+                except Exception as e:
+                    request.session['success'] = '操作失败'
+                    print('Inbox 批量操作异常：', e)
+            else:
+                request.session['success'] = '未选择任何通知或未登录'
+            # 使用 PRG 模式：重定向到 inbox 页面以避免重复提交
+            return redirect('/index/inbox.html')
+
+        # GET：获取并展示当前用户的已发送通知
+        try:
+            if user:
+                sent_notices = tb_notice.objects.filter(host=user,send=False).order_by('-timestamp')#按时间排序的发送消息
+        except Exception:
+            sent_notices = []
+        # 读取并移除可能存在的成功消息
+        success = request.session.pop('success', None)
+        return render(request, template_name, {'sent_notices': sent_notices, 'success': success})#发送的消息一并送出
     return render(request, template_name)
 def index(request):
     if 'username' not in request.session:

@@ -358,6 +358,8 @@
            
            
                   <!--Start row-->
+                  <form method ="post">
+                    {% csrf_token %}
                   <div class="row">
                       <div class="col-md-12">
                           
@@ -367,16 +369,29 @@
                               <ul class="list-unstyled mailbox-nav">
                                 <li class="active"><a href="inbox.html"><i class="fa fa-inbox"></i>Inbox 
                                 <span class="badge badge-success">4</span></a></li>
-                                <li><a href="#"><i class="fa fa-sign-out"></i>Sent</a></li>
-                                <li><a href="#"><i class="fa fa-file-text-o"></i>Draft</a></li>
-                                <li><a href="#"><i class="fa fa-exclamation-circle"></i>Spam</a></li>
-                                <li><a href="#"><i class="fa fa-trash"></i>Trash</a></li>
+                               <ul style="list-style:none; padding:0; margin:0; text-align:center;">
+                                    <li style="margin:10px 0;">
+                                        <input type="submit" value="发送" style="width:200px;" name="send">
+                                    </li>
+                                    <li style="margin:10px 0;">
+                                        <input type="submit" value="编辑" style="width:200px;" name="edit">
+                                    </li>
+                                    <li style="margin:10px 0;">
+                                        <input type="submit" value="查看" style="width:200px;" name="view">
+                                    </li>
+                                    <li style="margin:10px 0;">
+                                        <input type="submit" value="删除" style="width:200px;" name="delete">
+                                    </li>
+                                </ul>
+
                               </ul>
                         </div>
                         
                          <div class="col-md-9">
                          <div class="white-box">
                             <div class="mailbox-content">
+                            <form method="post" action="">
+                                {% csrf_token %}
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -420,424 +435,47 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="unread">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star icon-state-warning"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Jacob
-                                        </td>
-                                        <td>
-                                            There are many variations of passages of Lorem Ipsum </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            21 march
+                                    {% if success %}
+                                    <tr>
+                                        <td colspan="6">
+                                            <div class="alert alert-success" role="alert">{{ success }}</div>
                                         </td>
                                     </tr>
-                                    <tr class="unread">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star icon-state-warning"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Mark Doe
-                                        </td>
-                                        <td>
-                                            Lorem Ipsum is simply dummy text of the and typesetting
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            20 march
-                                        </td>
-                                    </tr>
-                                    <tr class="unread">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star icon-state-warning"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Adobe
-                                        </td>
-                                        <td>
-                                            There are many variations of passages of Lorem Ipsum </td>
-                                        <td>
-                                            <i class="fa fa-paperclip"></i>
-                                        </td>
-                                        <td>
-                                            18 march
-                                        </td>
-                                    </tr>
-                                    <tr class="unread">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star icon-state-warning"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Apple
-                                        </td>
-                                        <td>
-                                            Lorem Ipsum is simply dummy text of the and typesetting
-                                        </td>
-                                        <td>
-                                            <i class="fa fa-paperclip"></i>
-                                        </td>
-                                        <td>
-                                            16 Oct</td>
-                                    </tr>
-                                    <tr class="read">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Marry
-                                        </td>
-                                        <td>
-                                            There are many variations of passages of Lorem Ipsum </td>
-                                        <td>
-                                            <i class="fa fa-paperclip"></i>
-                                        </td>
-                                        <td>
-                                            12 June</td>
-                                    </tr>
-                                    <tr class="unread">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Marry
-                                        </td>
-                                        <td>
-                                            Lorem Ipsum is simply dummy text of the and typesetting
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            12 June</td>
-                                    </tr>
-                                    <tr class="read">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Marry
-                                        </td>
-                                        <td>
-                                            There are many variations of passages of Lorem Ipsum </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            20 April</td>
-                                    </tr>
-                                    <tr class="read">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Marry
-                                        </td>
-                                        <td>
-                                            Lorem Ipsum is simply dummy text of the and typesetting
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            20 April</td>
-                                    </tr>
-                                    <tr class="unread">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star icon-state-warning"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Marry
-                                        </td>
-                                        <td>
-                                            Lorem Ipsum is simply dummy text of the and typesetting
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            20 April</td>
-                                    </tr>
-                                    <tr class="read">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star icon-state-warning"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Mark Doe
-                                        </td>
-                                        <td>
-                                            There are many variations of passages of Lorem Ipsum </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            20 April</td>
-                                    </tr>
-                                    <tr class="read">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Mark Doe
-                                        </td>
-                                        <td>
-                                            Lorem Ipsum is simply dummy text of the and typesetting
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            20 April</td>
-                                    </tr>
-                                    <tr class="unread">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Mark Doe
-                                        </td>
-                                        <td>
-                                            There are many variations of passages of Lorem Ipsum </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            20 April</td>
-                                    </tr>
-                                    <tr class="read">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Zorita Serrano
-                                        </td>
-                                        <td>
-                                            Lorem Ipsum is simply dummy text of the and typesetting
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            20 April</td>
-                                    </tr>
-                                    <tr class="read">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Zorita Serrano
-                                        </td>
-                                        <td>
-                                            There are many variations of passages of Lorem Ipsum </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            20 April</td>
-                                    </tr>
-                                    <tr class="uread">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Williams
-                                        </td>
-                                        <td>
-                                            Lorem Ipsum is simply dummy text of the and typesetting
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            20 April</td>
-                                    </tr>
-                                    <tr class="read">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Williams
-                                        </td>
-                                        <td>
-                                            There are many variations of passages of Lorem Ipsum </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            20 April</td>
-                                    </tr>
-                                    <tr class="read">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star icon-state-warning"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Williams
-                                        </td>
-                                        <td>
-                                            Lorem Ipsum is simply dummy text of the and typesetting
-                                        </td>
-                                        <td>
-                                            <i class="fa fa-paperclip"></i>
-                                        </td>
-                                        <td>
-                                            20 April</td>
-                                    </tr>
-                                    <tr class="unread">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Williams
-                                        </td>
-                                        <td>
-                                            There are many variations of passages of Lorem Ipsum </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            20 April</td>
-                                    </tr>
-                                    <tr class="read">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Mark Doe
-                                        </td>
-                                        <td>
-                                            Lorem Ipsum is simply dummy text of the and typesetting
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            20 April</td>
-                                    </tr>
-                                    <tr class="read">
-                                        <td class="hidden-xs">
-                                           <div class="checkbox">
-                                             <input type="checkbox" class="checkbox-mail" >
-                                              <label></label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            <i class="fa fa-star"></i>
-                                        </td>
-                                        <td class="hidden-xs">
-                                            Mark Doe
-                                        </td>
-                                        <td>
-                                            There are many variations of passages of Lorem Ipsum </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            20 April</td>
-                                    </tr>
+                                    {% endif %}
+                                    {% if sent_notices and sent_notices|length > 0 %}
+                                        {% for notice in sent_notices %}
+                                        <tr class="{% if not notice.read %}unread{% else %}read{% endif %}">
+                                                <td class="hidden-xs">
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="checkbox-mail" name="selected_ids" value="{{notice.id}}">
+                                                            <label></label>
+                                                        </div>
+                                                </td>
+                                            <td class="hidden-xs">
+                                                <i class="fa fa-star{% if not notice.read %} icon-state-warning{% endif %}"></i>
+                                            </td>
+                                            <td class="hidden-xs">
+                                                {{ notice.recipient.username }}
+                                            </td>
+                                            <td>
+                                                <strong>{{ notice.subject }}</strong> - {{ notice.message|truncatechars:80 }}
+                                            </td>
+                                            <td>
+                                                {% if notice.send %}<i class="fa fa-paperclip"></i>{% endif %}
+                                            </td>
+                                            <td>
+                                                {{ notice.timestamp|date:"Y-m-d H:i" }}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="6">没有已发送通知。</td>
+                                        </tr>
+                                    {% endif %}
                                 </tbody>
+                            </table>
+                            </form>
                             </table>
                             </div>
                             
@@ -858,6 +496,7 @@
                       </div>
                       </div>
                   </div>
+                  </form>
                   <!--End row-->
 
                
