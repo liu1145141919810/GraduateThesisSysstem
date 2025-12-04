@@ -78,7 +78,6 @@ ui-buttons.html
 ### 11 路径正确生成器
 
 path("index/<str:page>.html", views.index_page, name="index_page"),
-<<<<<<< HEAD
 
 ### 12 记录，通知页面静态文件
 
@@ -125,8 +124,6 @@ python manage.py migrate
 ### 17 时间属性的加入
 
 timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-=======
->>>>>>> 94c3cb0af3ae72820f078794fb2226d27b8c3ce1
 
 ### 18 正确跳转新页面
 
@@ -156,4 +153,48 @@ qs = tb_notice.objects.filter(id__in=ids, host=user)
 ### 23 删除
 qs.delete()
 
-### 21 中notice来自外界所以要指示为{{notice.id}},即勾选之后就返回该notice的id值
+### 24 中notice来自外界所以要指示为{{notice.id}},即勾选之后就返回该notice的id值
+
+### 25 强制覆盖
+
+\$ git push origin main --force
+
+### 26 POST提交
+
+ editButton.addEventListener('click', function() {
+            if(editButton.textContent=="确定"){
+                fetch("/profile/",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json",
+                        "X-CSRFToken": "{{ csrf_token }}"
+                    },
+                    body:JSON.stringify({
+                        // 在这里收集需要提交的数据
+                        display_name: profileContainer.querySelector('[data-field="display_name"]').textContent,
+                    })
+                    })
+                editButton.textContent = "编辑信息";  // 或 innerText 也行
+            }})
+
+### 27 编辑方法，先选再对每个做...
+function enterEdit(){//向目标输入
+        //console打印当前信息
+        console.log("Entering edit mode");
+        const profileContainer = document.getElementById('profileForm');
+        const infoValues = profileContainer.querySelectorAll('.info-value');
+        infoValues.forEach(function(valueDiv) {
+            valueDiv.contentEditable = "true";
+        });
+    }
+    </script>
+
+### 28 结构体传输
+
+ //打印payload以调试
+        data= json.loads(request.body)
+        print("打印体",data)
+
+### 29 优秀的重定位
+
+<a href="/index/"><img src="/static/images/logo-icon.png" alt=""></a>

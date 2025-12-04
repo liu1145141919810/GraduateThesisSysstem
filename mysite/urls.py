@@ -24,5 +24,7 @@ urlpatterns = [
     path("login/",views.login),
     path('register/',views.register,name='register'),#significant working form
     path("index/<str:page>.html", views.index_page, name="index_page"),
+    path("profile/", views.profile, name="profile"),
+    #path("logout/", views.logout, name="logout"),
     #path('admin/', admin.site.urls),
 ]

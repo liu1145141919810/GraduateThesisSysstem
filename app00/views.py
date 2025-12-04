@@ -11,6 +11,7 @@ from cryptography.fernet import Fernet
 import base64
 import hashlib
 from dotenv import load_dotenv
+import json
 
 load_dotenv()
 # 生成加密密钥
@@ -78,6 +79,7 @@ def roleteller(email,usr,pwd):#判断注册合法性
         return -2  # 错误种类2：邮箱后缀不符合规则
 def login(request):
     """用户登录"""
+    print("请求方法：", request.method)
     if request.method == "GET":
         return render(request, "login.html")
     elif request.method == "POST":
@@ -95,6 +97,7 @@ def login(request):
                 request.session['email'] = login_record.email
                 request.session['role'] = login_record.role
                 tb_login_log.objects.create(username=login_record, status='success')
+                print("登录成功，Session 数据：", request.session.items())
                 return redirect("/index/")
             else:
                 tb_login_log.objects.create(username=login_record, status='fail')
@@ -154,6 +157,7 @@ def register(request):#用户注册
                     'error': f'注册失败: {"非法注册"}'
                 })
 def index_page(request, page):
+    print("请求页面：", page)
     if 'username' not in request.session:
         return redirect("/login/")
     # 假设模板放在 templates/ 下且文件名是 ui-buttons.html、ui-panels.html 等
@@ -164,7 +168,8 @@ def index_page(request, page):
         get_template(template_name)
     except Exception:
         raise Http404("Page not found")
-    
+    if page == "profile":
+        return redirect("/profile/")
     if page == "compose":#通知发送页面特殊处理
         print("方法：", request.method)
         print("Compose 页面特殊处理")
@@ -261,3 +266,128 @@ def index(request):
     if request.method == "POST":
        pass
     return render(request, "index.html")
+#========================
+def profile(request):
+    """个人信息页面（优化：实时查询数据库最新数据）"""
+    #print("访问个人信息页面")
+    #print("Session 数据：", request.session.items())
+    if 'user_id' not in request.session:  # 仅判断 user_id 是否存在
+        return redirect("/login/")
+    if request.method == "POST":
+        # 打印payload以调试
+        data= json.loads(request.body)
+        user_id = request.session.get('user_id')
+        login_user = tb_login.objects.get(id=user_id)  # 实时查询，确保数据最新
+        if login_user.role==1:
+            try:
+               tb_teacher.objects.filter(email=login_user.email).update(
+                    display_name=data.get("display_name", "未设置"),
+                    gender=data.get("gender", "unknown"),
+                    phone=data.get("phone", "000000"),
+                    college=data.get("college", "unknown"),
+                    student_id=data.get("student_id", "000000"),
+                    major=data.get("major", "unknown"),
+                )
+            except Exception as e:
+                print(f"更新教师信息错误: {e}")
+        elif login_user.role==2:
+            try:
+                tb_student.objects.filter(email=login_user.email).update(
+                    display_name=data.get("display_name", "未设置"),
+                    gender=data.get("gender", "unknown"),
+                    phone=data.get("phone", "000000"),
+                    college=data.get("college", "unknown"),
+                    student_id=data.get("student_id", "000000"),
+                    major=data.get("major", "unknown"),        
+                )
+            except Exception as e:
+                print(f"更新学生信息错误: {e}")
+    try:
+        user_id = request.session.get('user_id')
+        login_user = tb_login.objects.get(id=user_id)  # 实时查询，确保数据最新
+        
+        # 2. 基础用户信息（从实时查询的 login_user 中获取）
+        user_info = {
+            'username': login_user.username,  # 实时用户名
+            'email': login_user.email,        # 实时邮箱
+            'role': login_user.role,          # 实时角色
+        }
+        
+        # 3. 根据角色实时查询教师/学生表的最新数据
+        if login_user.role == 1:  # 教师
+            try:
+                teacher_info = tb_teacher.objects.get(email=login_user.email)  # 实时查询
+                display_name = teacher_info.display_name if teacher_info.display_name and teacher_info.display_name != '未设置' else teacher_info.username
+                user_info.update({
+                    'display_name': display_name,
+                    'login_username': teacher_info.username,
+                    'gender': teacher_info.gender if teacher_info.gender and teacher_info.gender != '未设置' else '未设置',
+                    'phone': teacher_info.phone if teacher_info.phone and teacher_info.phone != '未设置' else '未设置',
+                    'college': teacher_info.college if teacher_info.college and teacher_info.college != '未设置' else '未设置',
+                    'student_id': teacher_info.student_id if teacher_info.student_id else f"T{teacher_info.id}".zfill(10),
+                    'major': teacher_info.major if teacher_info.major and teacher_info.major != '未设置' else '未设置',
+                    'role_display': '教师'
+                })
+            except tb_teacher.DoesNotExist:
+                # 若教师表无数据，用登录表数据填充默认值
+                user_info.update({
+                    'display_name': login_user.username,
+                    'login_username': login_user.username,
+                    'gender': '未设置',
+                    'phone': '未设置',
+                    'college': '未设置',
+                    'student_id': f"T{user_id}".zfill(10) if user_id else '未知',
+                    'major': '未设置',
+                    'role_display': '教师'
+                })
+        
+        elif login_user.role == 2:  # 学生（
+            try:
+                student_info = tb_student.objects.get(email=login_user.email)  # 实时查询
+                display_name = student_info.display_name if student_info.display_name and student_info.display_name != '未设置' else student_info.username
+                user_info.update({
+                    'display_name': display_name,
+                    'login_username': student_info.username,
+                    'gender': student_info.gender if student_info.gender and student_info.gender != '未设置' else '未设置',
+                    'phone': student_info.phone if student_info.phone and student_info.phone != '未设置' else '未设置',
+                    'college': student_info.college if student_info.college and student_info.college != '未设置' else '未设置',
+                    'student_id': student_info.student_id if student_info.student_id else f"S{student_info.id}".zfill(10),
+                    'major': student_info.major if student_info.major and student_info.major != '未设置' else '未设置',
+                    'role_display': '学生'
+                })
+            except tb_student.DoesNotExist:
+                user_info.update({
+                    'display_name': login_user.username,
+                    'login_username': login_user.username,
+                    'gender': '未设置',
+                    'phone': '未设置',
+                    'college': '未设置',
+                    'student_id': f"S{user_id}".zfill(10) if user_id else '未知',
+                    'major': '未设置',
+                    'role_display': '学生'
+                })
+    
+        else:  # 管理员
+            user_info.update({
+                'display_name': login_user.username,
+                'login_username': login_user.username,
+                'gender': '未设置',
+                'phone': '未设置',
+                'college': '未设置',
+                'student_id': f"A{user_id}".zfill(10) if user_id else '未知',
+                'major': '未设置',
+                'role_display': '管理员' if login_user.role == 0 else '用户'
+            })
+        #print("\n===== 个人信息页面调试 =====")
+        #print(f"当前登录用户 ID: {user_id}")
+        #print(f"登录表（tb_login）中的 email: {login_user.email}")
+        #print(f"传递给模板的 user_info 数据：")
+        #for key, value in user_info.items():
+            #print(f"  {key}: {value}")
+        #print("===========================\n")
+
+        return render(request, "profile.html", {'user_info': user_info})
+    
+    except Exception as e:
+        print(f"个人信息页面错误: {e}")
+        return redirect("/login/")

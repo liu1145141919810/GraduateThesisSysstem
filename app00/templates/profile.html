@@ -8,11 +8,12 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="/static/images/favicon.png" type="image/png">
-  <title></title>  
+  <title>个人信息</title>  
     <link href="/static/css/icons.css" rel="stylesheet">
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/style.css" rel="stylesheet">
     <link href="/static/css/responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,36 +21,201 @@
           <script src="js/html5shiv.min.js"></script>
           <script src="js/respond.min.js"></script>
     <![endif]-->
+    <style>
+.main-content {
+    min-height: auto; 
+    height: auto; 
+}
+.wrapper {
+    min-height: auto;
+    padding-bottom: 20px; 
+}
 
+.profile-container {
+    min-height: 400px; 
+    margin-bottom: auto;
+}
+.footer-main {
+    position: relative; 
+    bottom: auto;
+    margin-top: 20px;
+}
+        .profile-container {
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .avatar-container {
+            position: relative;
+            margin-right: 20px;
+        }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #f0f0f0;
+        }
+        .user-info h2 {
+            margin: 0 0 5px;
+            font-size: 24px;
+            color: #2c3e50;
+        }
+        .user-info p {
+            margin: 0;
+            color: #7f8c8d;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .info-group {
+            margin-bottom: 20px;
+        }
+        .info-label {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            font-size: 16px;
+            color: #2c3e50;
+            padding: 8px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .info-value.editable {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .info-value.editable:hover {
+            background-color: #f8f9fa;
+            padding-left: 10px;
+        }
+    
+        .info-edit input, .info-edit select, .info-edit textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .info-edit textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            justify-content: flex-end;
+        }
+        
+        .btn-edit, .btn-save, .btn-cancel {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: inline-flex;
+        }
+        
+        .btn-edit {
+            background: #3498db;
+            color: white;
+            display: inline-flex;
+        }
+        
+        .btn-edit:hover {
+            background: #2980b9;
+        }
+        
+        .btn-save {
+            background: #2ecc71;
+            color: white;
+            display: none;
+        }
+        
+        .btn-save:hover {
+            background: #27ae60;
+        }
+        
+        .btn-cancel {
+            background: #95a5a6;
+            color: white;
+            display: none;
+        }
+        
+        .btn-cancel:hover {
+            background: #7f8c8d;
+        }
+        .info-edit {
+            display: none;
+        }
+        
+        .view-mode .info-value {
+            display: block;
+        }
+        
+        .view-mode .info-edit {
+            display: none;
+        }
+        
+        .mode-indicator {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        .view-indicator {
+            background: #e8f6f3;
+            color: #1abc9c;
+        }
+    </style>
 </head>
 
 <body class="sticky-header">
-
-
     <!--Start left side Menu-->
     <div class="left-side sticky-left-side">
 
         <!--logo-->
         <div class="logo">
-            <a href="index.html"><img src="/static/images/logo.png" alt=""></a>
+            <a href="/index/"><img src="/static/images/logo.png" alt=""></a>
         </div>
 
         <div class="logo-icon text-center">
-            <a href="index.html"><img src="/static/images/logo-icon.png" alt=""></a>
+            <a href="/index/"><img src="/static/images/logo-icon.png" alt=""></a>
         </div>
         <!--logo-->
 
         <div class="left-side-inner">
             <!--Sidebar nav-->
             <ul class="nav nav-pills nav-stacked custom-nav">
-                <li class="menu-list"><a href="index.html"><i class="icon-home"></i> <span>Dashboard</span></a>
+                <li class="menu-list"><a href="index.html"><i class="icon-home"></i> <span>首页</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="index.html"> Dashboard 1</a></li>
                         <li><a href="dashboard2.html"> Dashboard 2</a></li>
                     </ul>
                 </li>
 
-                <li class="menu-list"><a href="#"><i class="icon-layers"></i> <span>UI Elements</span></a>
+                <li class="menu-list"><a href="#"><i class="icon-layers"></i> <span>选题</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="ui-buttons.html"> Buttons</a></li>
                         <li ><a href="ui-panels.html"> Panels</a></li>
@@ -71,11 +237,11 @@
                     </ul>
                 </li>
 
-                <li class="menu-list"><a href="#"><i class="icon-envelope-open"></i> <span>Mail</span></a>
+                <li class="menu-list"><a href="#"><i class="icon-envelope-open"></i> <span>通知</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="inbox.html"> Inbox</a></li>
-                        <li> <a href="compose.html"> Compose Mail</a></li>
-                        <li><a href="message-view.html"> View Mail</a></li>
+                        <li> <a href="compose.html"> Compose </a></li>
+                        <li><a href="message-view.html"> View</a></li>
                     </ul>
                 </li>
 
@@ -108,24 +274,24 @@
                 <li><a href="calendar.html"><i class="icon-note"></i> <span>Calendar</span></a></li>
                  <li><a href="widget.html"><i class="icon-wrench"></i> <span>Widget</span></a></li>
                 
-                <li class="menu-list"><a href="#"><i class="icon-pie-chart"></i> <span>Charts</span></a>
+                <li class="menu-list nav-active"><a href="#"><i class="icon-pie-chart"></i> <span>Charts</span></a>
                     <ul class="sub-menu-list">
                     <li><a href="flot-chart.html"> Flot Charts</a></li>
-                    <li><a href="morris-chart.html"> Morris Charts</a></li>
+                    <li class="active"><a href="morris-chart.html"> Morris Charts</a></li>
                     <li><a href="chart-js.html"> Chartjs</a></li>
                     <li><a href="chart-sparkline.html"> Chart Sparkline</a></li>
                     </ul>
                 </li>
                 <li class="menu-list"><a href="#"><i class="icon-location-pin"></i> <span>Maps</span></a>
                     <ul class="sub-menu-list">
-                        <li ><a href="google-map.html"> Google Map</a></li>
-                        <li ><a href="vector-map.html"> Vector Map</a></li>
+                        <li><a href="google-map.html"> Google Map</a></li>
+                        <li><a href="vector-map.html"> Vector Map</a></li>
                     </ul>
                 </li>
-                <li class="menu-list nav-active"><a href="#"><i class="icon-folder"></i> <span>Extra Pages</span></a>
+                <li class="menu-list"><a href="#"><i class="icon-folder"></i> <span>Extra Pages</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="faq.html"> FAQ</a></li>
-                        <li class="active"><a href="profile.html"> Profile</a></li>
+                        <li><a href="profile.html"> Profile</a></li>
                         <li><a href="invoice.html"> Invoice</a></li>
                         <li><a href="timeline.html"> Timeline</a></li>
                         <li><a href="email-template.html"> Email Template</a></li>
@@ -153,10 +319,8 @@
         </div>
     </div>
     <!--End left side menu-->
-
-    
-    <!-- main content start-->
-    <div class="main-content" >
+      <!-- main content start-->
+    <div class="main-content">
 
         <!-- header section start-->
         <div class="header-section">
@@ -262,12 +426,13 @@
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
                             <i class="fa fa-bell-o"></i>
-                            <span class="badge">4</span>
+                            <span class="badge">1</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-head pull-right">
                          <h5 class="title">Notifications</h5>
                         <ul class="dropdown-list normal-list">
 						 <li class="message-list message-scroll-list">
+
                           <a href="#">
                               <span class="photo"> <img src="/static/images/users/avatar-8.jpg" class="img-circle" alt="img"></span>
                               <span class="subject">John Doe</span>
@@ -289,19 +454,6 @@
                               <span class="time">20 minutes ago</span>
                           </a>
                          
-                          <a href="#">
-                              <span class="photo"> <img src="/static/images/users/avatar-6.jpg" class="img-circle" alt="img"></span>
-                               <span class="subject">John Doe</span>
-                               <span class="message"> New tasks needs to be done</span>
-                              <span class="time">20 minutes ago</span>
-                          </a>
-                        
-                          <a href="#">
-                              <span class="photo"> <img src="/static/images/users/avatar-6.jpg" class="img-circle" alt="img"></span>
-                               <span class="subject">John Doe</span>
-                               <span class="message"> New tasks needs to be done</span>
-                              <span class="time">20 minutes ago</span>
-                          </a>
                           
                           <a href="#">
                               <span class="photo"> <img src="/static/images/users/avatar-6.jpg" class="img-circle" alt="img"></span>
@@ -334,271 +486,136 @@
 
         </div>
         <!-- header section end-->
-
-        <!--body wrapper start-->
-        <div class="wrapper">
-              
-              <!--Start Page Title-->
-               <div class="page-title-box">
-                    <h4 class="page-title">Profile</h4>
-                    <ol class="breadcrumb">
-                        <li>
-                            <a href="#">Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#">Pages</a>
-                        </li>
-                        <li class="active">
-                            Profile
-                        </li>
-                    </ol>
-                    <div class="clearfix"></div>
-                 </div>
-                  <!--End Page Title-->          
-           
-                 <!--Start row-->
-                 <div class="row">
-                     <div class="col-md-12">
-                        <!-- Start cover-->
-                         <div class="profile-cover">
-                             <div class="overlay-profile"></div>
-                              <div class="profile-inner">
-                                  <div class="profile-info">
-                                  
-                                      <div class="profile-media">
-                                         <img src="/static/images/profile-picture.png" alt="" />
-                                      </div>
-                                      
-                                      <div class="profile-intro">
-                                        <h4>Jonathan Doe</h4>
-                                        <p>Wordpress Developer</p>
-                                        <ul>
-                                           <li> <i class="fa fa-map-marker"></i> Lorem ipsum, America   </li>
-                                           <li> <i class="fa fa-envelope-o"></i> example@mail.com   </li>
-                                        </ul>
-                                      </div>
-                                      
-                                  </div> <!--/.profile-info-->
-                                  
-                                  <div class="profile-stats">
-                                      <ul>
-                                      
-                                         <li>
-                                            <h4>66</h4>
-                                            <p>Friends</p>
-                                         </li>
-                                      
-                                         <li>
-                                            <h4>234</h4>
-                                            <p>Photos</p>
-                                         </li>
-
-                                         <li>
-                                            <h4>257</h4>
-                                            <p>Followers</p>
-                                         </li>
-                                         
-                                      </ul>
-                                  </div>
-                                  
-                                  
-                              </div>
-                         </div>    
-                         <!-- End cover-->
-                         
-                     </div>
-                 </div>
-                 <!--End row-->
-           
-
-              <!--Start row-->
-              <div class="row">
-                  <div class="col-md-8">
-                    <div class="white-box">
-                        <form>
-                           <div class="form-group">
-                               <textarea rows="2" class="form-control" placeholder="Post a new message"></textarea>
-                           </div>
-                           
-                           <input type="submit" value="Post" class="btn btn-primary pull-right">
-                           
-                            <ul class="nav nav-pills m-t-20 post-list">
-                                <li>
-                                    <a href="#"><i class="fa fa-user"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-location-arrow"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class=" fa fa-camera"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-smile-o"></i></a>
-                                </li>
-                            </ul>
-                           
-                        </form>
-                    </div> <!--/.hite-box-->
-                                      
-                      <div class="white-box">
-                          <div class="post-header">
-                          <div class="post-author-media">
-                              <img src="/static/images/profile-picture.png"  alt="">
-                          </div>
-                          
-                          <div class="post-author">
-                            <h4>Jonathan Doe</h4>
-                            <p>2 hours ago</p>
-                          </div>
-                          </div> <!-- /.post-header-->
-                          
-                          <div class="post-desc">
-                              <p>Lorem ipsum dolor sit amet, in per dicit graecis evertitur, sed ex labitur virtute neglegentur, quod zril decore ei qui. Epicurei intellegat nec ei. Sed id doctus insolens pericula, sea suas nostrud accusamus.</p>
-                          </div>
-                          
-                          <div class="comment-info">
-                              <ul>
-                                <li> <a href="#"><i class="fa fa-thumbs-up"></i> Like (4)</a></li>
-                                <li> <a href="#"><i class="fa fa-comment"></i> Comment (8)</a></li>
-                                <li> <a href="#"><i class="fa fa-comment"></i> Share (12)</a></li>
-                              </ul>
-                          </div>
-                         
-                         
-                         <div class="timeline-comment">
-                             <img src="/static/images/profile-picture.png"  alt="">
-                             <span>Jonathan Doe <small class="text-light">2 hours ago</small></span>
-                             <div class="comment-text">
-                                 <p> Epicurei intellegat nec ei. Sed id doctus insolens pericula, sea suas nostrud accusamus.</p>
-                             </div>
-                         </div> <!--/.timeline-comment-->
-                         
-                         <div class="timeline-comment">
-                             <img src="/static/images/profile-picture.png"  alt="">
-                             <span>Jonathan Doe <small class="text-light">2 hours ago</small></span>
-                             <div class="comment-text">
-                                 <p> Epicurei intellegat nec ei. Sed id doctus insolens pericula, sea suas nostrud accusamus.</p>
-                             </div>
-                         </div> <!--/.timeline-comment-->
-                         
-                          <textarea class="form-control" placeholder="Replay"></textarea>
-                          
-                      </div><!-- /.white-box-->
-                      
-                   
-                      <div class="white-box">
-                          <div class="post-header">
-                          <div class="post-author-media">
-                              <img src="/static/images/profile-picture.png"  alt="">
-                          </div>
-                          
-                          <div class="post-author">
-                            <h4>Jonathan Doe</h4>
-                            <p>2 hours ago</p>
-                          </div>
-                          </div> <!-- /.post-header-->
-                          
-                          <div class="post-desc">
-                              <p>Lorem ipsum dolor sit amet, in per dicit graecis evertitur, sed ex labitur virtute neglegentur, quod zril decore ei qui. Epicurei intellegat nec ei. Sed id doctus insolens pericula, sea suas nostrud accusamus.</p>
-                          </div>
-                          
-                          <div class="comment-info">
-                              <ul>
-                                <li> <a href="#"><i class="fa fa-thumbs-up"></i> Like (4)</a></li>
-                                <li> <a href="#"><i class="fa fa-comment"></i> Comment (8)</a></li>
-                                <li> <a href="#"><i class="fa fa-comment"></i> Share (12)</a></li>
-                              </ul>
-                          </div>
-                         
-                         
-                         <div class="timeline-comment">
-                             <img src="/static/images/profile-picture.png"  alt="">
-                             <span>Jonathan Doe <small class="text-light">2 hours ago</small></span>
-                             <div class="comment-text">
-                                 <p> Epicurei intellegat nec ei. Sed id doctus insolens pericula, sea suas nostrud accusamus.</p>
-                             </div>
-                         </div> <!--/.timeline-comment-->
-                         
-                          <textarea class="form-control" placeholder="Replay"></textarea>
-                          
-                      </div><!-- /.white-box-->
-                                            
-                  </div> <!--/.col-md-8-->
-                  
-                  
-                  <div class="col-md-4">
-                      <div class="white-box">
-                        <h2 class="header-title">Skills</h2>
-                            <p>HTML5</p>
-                            <div class="progress progress-xs">
-                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                </div>
-                            </div>
-                            <p>CSS3</p>
-                            <div class="progress progress-xs">
-                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                </div>
-                            </div>
-                            <p>Bootstrap</p>
-                            <div class="progress progress-xs">
-                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
-                                </div>
-                            </div>
-                      </div> <!--/.white-box-->
-                      
-                      
-                      <div class="white-box">
-                        <h2 class="header-title">About</h2
-                        ><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae neque incidunt cumque, dolore eveniet porro asperiores itaque! Eligendi minus cupiditate molestiae praesentium, facilis, neque saepe, soluta sapiente aliquid modi sunt.</p>
-                      </div> <!--/.white-box-->
-                      
-                      <div class="white-box">
-                        <h2 class="header-title">Team Members</h2>
-                       <div class="friend-list">
-                          <ul>
-                            <li> <a href="" >  <img src="/static/images/users/avatar-1.jpg"  alt="friend"/> </a> </li>
-                            <li> <a href="" >  <img src="/static/images/users/avatar-2.jpg"  alt="friend"/> </a> </li>
-                            <li> <a href="" >  <img src="/static/images/users/avatar-3.jpg"  alt="friend"/> </a> </li>
-                             <li> <a href="" >  <img src="/static/images/users/avatar-4.jpg"  alt="friend"/> </a> </li>
-                             <li> <a href="" >  <img src="/static/images/users/avatar-5.jpg"  alt="friend"/> </a> </li>
-                             <li> <a href="" >  <img src="/static/images/users/avatar-6.jpg"  alt="friend"/> </a> </li>
-                             <li> <a href="" >  <img src="/static/images/users/avatar-7.jpg"  alt="friend"/> </a> </li>
-                             <li> <a href="" >  <img src="/static/images/users/avatar-8.jpg"  alt="friend"/> </a> </li>
-                          </ul>
-                       </div>
-                      </div> <!--/.white-box-->
-                      
-                      
-                  </div> <!--/.col-md-4-->
-                  
-              </div>
-              <!--End row-->
-           
-           
-           
-			    </div>
-        <!-- End Wrapper-->
-
-
-        <!--Start  Footer -->
-        <footer class="footer-main">Copyright &copy; 2018.Company name All rights reserved.</footer>	
-         <!--End footer -->
-
-       </div>
-      <!--End main content -->
     
+    <!-- 个人信息内容部分 -->
+    <div class="wrapper">
+        <div class="page-title-box">
+            <h4 class="page-title">个人信息 <span class="mode-indicator view-indicator">查看模式</span></h4>
+            <ol class="breadcrumb">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Pages</a></li>
+                <li class="active">个人信息</li>
+            </ol>
+            <div class="clearfix"></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <!-- 修改为只读模式 -->
+               <div class="profile-container readonly-mode" id="profileForm">
+    <div class="profile-header">
+        <div class="avatar-container">
+            <img src="/static/images/users/avatar-6.jpg" alt="用户头像" class="avatar">
+        </div>
+        <div class="user-info">
+            <h2 id="userName">{{ user_info.display_name }}</h2> 
+            <p id="userRole">{{ user_info.role_display }}</p>
+            <p style="color: #666; font-size: 12px; margin-top: 5px;">
+                用户名: {{ user_info.login_username }}  
+            </p>
+        </div>
+    </div>
+    <div class="info-grid">
+    <div>
+        <div class="info-group">
+            <div class="info-label">姓名</div>
+            <div class="info-value" data-field="display_name">{{ user_info.display_name }}</div>
+        </div>
+        <div class="info-group">
+            <div class="info-label">用户名</div>
+            <div class="info-value" data-field="login_username">{{ user_info.login_username }}</div>
+        </div>
+        <div class="info-group">
+            <div class="info-label">性别</div>
+            <div class="info-value" data-field="gender">{{ user_info.gender }}</div>
+        </div>
+        <div class="info-group">
+            <div class="info-label">邮箱</div>
+            <div class="info-value" data-field="email">{{ user_info.email }}</div>
+        </div>
+    </div>
 
+    <div>
+        <div class="info-group">
+            <div class="info-label">手机号码</div>
+            <div class="info-value" data-field="phone">{{ user_info.phone }}</div>
+        </div>
+        <div class="info-group">
+            <div class="info-label">学院</div>
+            <div class="info-value" data-field="college">{{ user_info.college }}</div>
+        </div>
+        <div class="info-group">
+            <div class="info-label">学号/工号</div>
+            <div class="info-value" data-field="student_id">{{ user_info.student_id }}</div>
+        </div>
+        <div class="info-group">
+            <div class="info-label">专业</div>
+            <div class="info-value" data-field="major">{{ user_info.major }}</div>
+        </div>
+    </div>
+</div>
 
-    <!--Begin core plugin -->
-    <script src="/static/js/jquery.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    <script src="/static/plugins/moment/moment.js"></script>
-    <script  src="/static/js/jquery.slimscroll.js "></script>
-    <script src="/static/js/jquery.nicescroll.js"></script>
-    <script src="/static/js/functions.js"></script>
-    <!-- End core plugin -->
-    
+<button id="edit_it">编辑信息</button>
+</div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer-main">个人信息页面</footer>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const editButton = document.getElementById('edit_it');
+        const profileContainer = document.getElementById('profileForm');
+        document.title = "{{ user_info.display_name }}的个人信息";
+        editButton.addEventListener('click', function() {
+            if(editButton.textContent=="确定"){
+                returnback();
+                fetch("/profile/",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json",
+                        "X-CSRFToken": "{{ csrf_token }}"
+                    },
+                    body:JSON.stringify({
+                        display_name:profileContainer.querySelector('.info-value[data-field="display_name"]').textContent,
+                        gender:profileContainer.querySelector('.info-value[data-field="gender"]').textContent,
+                        phone:profileContainer.querySelector('.info-value[data-field="phone"]').textContent,
+                        college:profileContainer.querySelector('.info-value[data-field="college"]').textContent,
+                        student_id:profileContainer.querySelector('.info-value[data-field="student_id"]').textContent,
+                        major:profileContainer.querySelector('.info-value[data-field="major"]').textContent
+                    })
+                    })
+                editButton.textContent = "编辑信息";  // 或 innerText 也行
+            }
+            else if(editButton.textContent=="编辑信息"){
+                //returnback();
+                enterEdit();
+                editButton.textContent = "确定";  // 或 innerText 也行
+            }
+        });
+    });
+    function enterEdit(){//向目标输入
+        //console打印当前信息
+        console.log("Entering edit mode");
+        const profileContainer = document.getElementById('profileForm');
+        const infoValues = profileContainer.querySelectorAll('.info-value');
+        infoValues.forEach(function(valueDiv) {
+            if(valueDiv.getAttribute("data-field")=="login_username"||
+               valueDiv.getAttribute("data-field")=="email"){
+                return;//用户名不可更改
+            }
+            valueDiv.contentEditable = "true";
+        });
+    }
+    function returnback(){//退出编辑
+        console.log("Exiting edit mode");
+        const profileContainer = document.getElementById('profileForm');
+        const infoValues = profileContainer.querySelectorAll('.info-value');
+        infoValues.forEach(function(valueDiv) {
+            valueDiv.contentEditable = "false";
+        });
+    }
+    </script>
 
 </body>
-
 </html>
