@@ -1,10 +1,6 @@
 # DB大作业（课题系统）
 
-<<<<<<< HEAD
 ## 实现版本 1.2
-=======
-## 实现版本 1.0
->>>>>>> fd26a133c5477b4dfbb8f14c2fa24ea42b166645
 
 ## 更新操作
 
@@ -28,7 +24,7 @@
 
 ### 1.1 发送邮件进入展示页面参数区域，展示栏名字调整，页面跳转优化
 
-### 1.2 页面端完全展示实现，选图编写入库逻辑，删除通知功能
+### 1.2 页面端完全展示实现，删除通知功能，邮件查看方法啊优化
 
 ## 学习日志
 
@@ -208,7 +204,6 @@ function enterEdit(){//向目标输入
 ### 29 优秀的重定位
 
 <a href="/index/"><img src="/static/images/logo-icon.png" alt=""></a>
-<<<<<<< HEAD
 
 ### 30 后台函数
 
@@ -219,5 +214,25 @@ def auto_delete_notice(sender, instance, **kwargs):
         instance.delete()
 触发
 m.save()
-=======
->>>>>>> fd26a133c5477b4dfbb8f14c2fa24ea42b166645
+
+### 31 crsf提交
+
+headers: {
+    'Content-Type': 'application/json',
+    'X-CSRFToken': '{{ csrf_token }}'  // ⭐ Django 必须要这个
+},
+
+### 32 加入交互数据处理传输
+
+<button class="edit-btn" data-id="{{ msg.id }}">删除</button>
+
+### 33 刷新立即触发
+
+后
+return JsonResponse({"status": "ok"})
+前
+then(...),then(...)
+
+### 34 批量更新方法
+
+qs.update(showsend=False)

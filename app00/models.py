@@ -21,7 +21,7 @@ class tb_teacher(models.Model):#教师表
     college = models.CharField(max_length=100,default='unknown')      #所属学院
     student_id = models.CharField(max_length=50,default='000000')     #工号
     major = models.CharField(max_length=100,default='unknown')        #专业
-
+    login_id = models.ForeignKey(tb_login,on_delete=models.CASCADE,null=True,blank=True,default=None)
 
 class tb_student(models.Model):#学生表
     id = models.AutoField(primary_key=True)                            #学生ID
@@ -33,17 +33,25 @@ class tb_student(models.Model):#学生表
     college = models.CharField(max_length=100,default='unknown')       #所属学院
     student_id = models.CharField(max_length=50,default='000000')      #学号
     major = models.CharField(max_length=100,default='unknown')         #专业
-    
+    login_id = models.ForeignKey(tb_login,on_delete=models.CASCADE,null=True,blank=True,default=None)
+ 
 class tb_topic(models.Model):#课题表
     id = models.AutoField(primary_key=True)
     title=models.CharField(max_length=200,default='untitled')
+    profession=models.CharField(max_length=100,default='unknown')
+    teacher_id=models.ForeignKey(tb_teacher,on_delete=models.CASCADE,default=None)
+    timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
 class tb_student_topic(models.Model):#学生课题关联表
     id = models.AutoField(primary_key=True)
+    student_id=models.ForeignKey(tb_student,on_delete=models.CASCADE,default=None)
+    topic_id=models.ForeignKey(tb_topic,on_delete=models.CASCADE,default=None)
+    content_id=models.ForeignKey('tb_content',on_delete=models.CASCADE,default=None)
 
 class tb_content(models.Model):#内容表
     id = models.AutoField(primary_key=True) 
     write_id=models.IntegerField(default=0)
+    timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
 class tb_login_log(models.Model):#登录日志
     id = models.AutoField(primary_key=True)
@@ -81,7 +89,7 @@ python manage.py migrate
 """
 
 """
-123456@teach.com
+123456@teacher.com
 teacher0
 TeacherPwd123
 

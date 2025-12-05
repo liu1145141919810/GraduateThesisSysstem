@@ -48,11 +48,11 @@
                     </ul>
                 </li>
 
-                <li class="menu-list"><a href="#"><i class="icon-layers"></i> <span>UI Elements</span></a>
+                <li class="menu-list"><a href="#"><i class="icon-layers"></i> <span>选题</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="ui-buttons.html"> Buttons</a></li>
-                        <li ><a href="ui-panels.html"> Panels</a></li>
-                        <li><a href="ui-sweet-alert.html">Sweet alert</a></li>
+                        <li><a href="distribute.html"> 发布选题</a></li>
+                        <li ><a href="myissue.html"> 我的选题</a></li>
+                        <li><a href="ui-sweet-alert.html">查看选题</a></li>
                         <li><a href="ui-progressbar.html">Progressbar</a></li>
                         <li><a href="ui-alert-notification.html">Alert &amp; notification</a></li>
                         <li><a href="ui-checkbox-radio.html">Checkbox-radios</a></li>
@@ -392,7 +392,7 @@
                                         <div class="message-options">
                                            <a href="compose.html" class="btn btn-link"><i class="fa fa-reply m-r-5"></i>Reply</a> 
                                            <a href="#" class="btn btn-link"><i class="fa fa-arrow-right m-r-5"></i>Forward</a> 
-                                           <button id="edit_it">删除</button>
+                                          <button class="edit-btn" data-id="{{ msg.id }}">删除</button>
                                         </div>
                                     </div>
                                 </div>
@@ -442,7 +442,34 @@
     <script src="/static/js/jquery.nicescroll.js"></script>
     <script src="/static/js/functions.js"></script>
     <script>
-
+        document.addEventListener('DOMContentLoaded', function() {
+            var editButton = document.querySelectorAll('.edit-btn');
+             console.log(editButton);
+            editButton.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    console.log(button.getAttribute('data-id'));
+                   fetch('/index/message-view.html', {
+                       method: 'POST',
+                       headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}'  // ⭐ Django 必须要这个
+                       },
+                       body: JSON.stringify({
+                          //得到所在的msg信息
+                          id: button.getAttribute('data-id')  // 假设 msg 有一个唯一标识符 id
+                       })
+                   }).then(response => response.json())
+                     .then(data => {
+                         if (data.status === 'ok') {
+                             // 删除成功后，可以选择刷新页面或移除对应的消息元素
+                             location.reload(); // 刷新页面
+                         } else {
+                             alert('删除失败');
+                         }
+                     });
+                });
+            });
+        });
     </script>
     <!-- End core plugin -->
        
