@@ -4,6 +4,8 @@ from django.core.validators import EmailValidator
 from django.core.exceptions import ValidationError
 from django.template.loader import get_template
 from django.http import Http404
+from django.db import transaction
+from app00.admin import deal_message
 from app00.models import *
 import re
 import os
@@ -163,6 +165,18 @@ def index_page(request, page):
     # 假设模板放在 templates/ 下且文件名是 ui-buttons.html、ui-panels.html 等
     template_name = f"{page}.html"
 
+    user_id = request.session.get('user_id')
+    sent_notices = []
+    user = None
+
+    login_user = tb_login.objects.get(id=request.session.get('user_id'))
+    role=login_user.role
+    username=""
+    if role==1:
+        username=tb_teacher.objects.get(email=login_user.email).username
+    elif role==2:
+        username=tb_student.objects.get(email=login_user.email).username
+
     # 可选：先检查模板是否存在，避免没有模板时报 500
     try:
         get_template(template_name)
@@ -170,11 +184,24 @@ def index_page(request, page):
         raise Http404("Page not found")
     if page == "profile":
         return redirect("/profile/")
+    
+    if page == "message-view":
+        user_id = request.session.get('user_id')
+        message=tb_notice.objects.filter(recipient_id=user_id,send=True).order_by('-timestamp')#获取已发送的通知
+        with transaction.atomic():
+            for m in message:
+                m.read = True
+                m.save()
+        message=deal_message(message)
+        return render(request,template_name,{'username':username,'message':message})
+        #return render(request, template_name, {'sent_notices': sent_notices, 'success': success})#发送的消息一并送出
+
     if page == "compose":#通知发送页面特殊处理
         print("方法：", request.method)
         print("Compose 页面特殊处理")
+
         if request.method == "GET":
-            return render(request, template_name)
+            return render(request, template_name,{'username':username})
         elif request.method == "POST":
             To = request.POST.get("to")
             subject = request.POST.get("subject")
@@ -198,8 +225,12 @@ def index_page(request, page):
                 request.session['success'] = '编写成功'
                 return redirect("/index/inbox.html")
             except tb_login.DoesNotExist:
-                return render(request, "compose.html", {'error': '编写失败：收件人不存在'})
-        
+                if role==1:
+                    username=tb_teacher.objects.get(email=sender.email).username
+                elif role==2:
+                    username=tb_student.objects.get(email=sender.email).username
+                return render(request, "compose.html",{'username':username,'error': '编写失败：收件人不存在'})
+
     if page == "inbox":#提取该用户发送的数据库通知
         # 先获取当前用户
         user_id = request.session.get('user_id')
@@ -210,7 +241,6 @@ def index_page(request, page):
                 user = tb_login.objects.get(id=user_id)
         except Exception:
             user = None
-
         # 处理 POST 操作（批量操作：标为已读/未读、删除）
         if request.method == "POST":
             action = request.POST.get('action')
@@ -257,8 +287,8 @@ def index_page(request, page):
             sent_notices = []
         # 读取并移除可能存在的成功消息
         success = request.session.pop('success', None)
-        return render(request, template_name, {'sent_notices': sent_notices, 'success': success})#发送的消息一并送出
-    return render(request, template_name)
+        return render(request, template_name, {'username':username, 'sent_notices': sent_notices, 'success': success})#发送的消息一并送出
+    return render(request, template_name,{'username':username})
 def index(request):
     if 'username' not in request.session:
         return redirect("/login/")

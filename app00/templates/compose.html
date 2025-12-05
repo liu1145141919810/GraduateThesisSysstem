@@ -144,7 +144,7 @@
                     </li>
                     <li class="menu-list"><a href="#"><i class="icon-lock"></i> <span>Login</span></a>
                         <ul class="sub-menu-list">
-                        <li><a href="login.html"> Login </a></li>
+                        <li><a href="/login/"> Login </a></li>
                         <li><a href="forgot-password.html"> Forgot Password </a></li>
                             <li><a href="registration.html"> Registration </a></li>
                             <li><a href="locked.html"> Lockscreen </a></li>
@@ -319,17 +319,19 @@
                             </div>
                         </li>
                         <li>
+                            {% if username %}
                             <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                 <img src="/static/images/users/avatar-6.jpg" alt="" />
-                                Kobe Bryant
+                                {{ username }}
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                             <li> <a href="#"> <i class="fa fa-wrench"></i> Settings </a> </li>
-                            <li> <a href="#"> <i class="fa fa-user"></i> Profile </a> </li>
+                            <li> <a href="/profile"> <i class="fa fa-user"></i> Profile </a> </li>
                             <li> <a href="#"> <i class="fa fa-info"></i> Help </a> </li>
                             <li> <a href="#"> <i class="fa fa-lock"></i> Logout </a> </li>
                             </ul>
+                            {% endif %}
                         </li>
 
                     </ul>

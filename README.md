@@ -1,6 +1,6 @@
 # DB大作业（课题系统）
 
-## 实现版本 0.7
+## 实现版本 1.2
 
 ## 更新操作
 
@@ -21,6 +21,10 @@
 ### 0.7 消息存在性检测，inbox待发送的展示，发送操作和删除
 
 ### 1.0 加入了个人的消息界面，可以数据库存取，改进重定位问题
+
+### 1.1 发送邮件进入展示页面参数区域，展示栏名字调整，页面跳转优化
+
+### 1.2 页面端完全展示实现，选图编写入库逻辑，删除通知功能
 
 ## 学习日志
 
@@ -200,3 +204,13 @@ function enterEdit(){//向目标输入
 ### 29 优秀的重定位
 
 <a href="/index/"><img src="/static/images/logo-icon.png" alt=""></a>
+
+### 30 后台函数
+
+@receiver(post_save, sender=tb_notice)
+def auto_delete_notice(sender, instance, **kwargs):
+    # 如果两个显示都关闭，则自动删除这条消息
+    if not instance.showsend and not instance.showreceive:
+        instance.delete()
+触发
+m.save()

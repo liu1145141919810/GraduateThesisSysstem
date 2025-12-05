@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 from django.db import models
@@ -57,11 +59,22 @@ class tb_notice(models.Model):#通知表
     id = models.AutoField(primary_key=True)
     read = models.BooleanField(default=False)
     send = models.BooleanField(default=False)
+    showsend = models.BooleanField(default=True)
+    showreceive = models.BooleanField(default=True)
     host = models.ForeignKey(tb_login, on_delete=models.CASCADE, related_name='notices_sent', null=True, blank=True)
     recipient = models.ForeignKey(tb_login, on_delete=models.CASCADE, related_name='notices_received', null=True, blank=True)
     subject = models.CharField(max_length=100, default='No subject')
     message = models.TextField(default='No message')
     timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+###后台执行函数
+
+@receiver(post_save, sender=tb_notice)
+def auto_delete_notice(sender, instance, **kwargs):
+    # 如果两个显示都关闭，则自动删除这条消息
+    if not instance.showsend and not instance.showreceive:
+        instance.delete()
+
 """
 python manage.py makemigrations
 python manage.py migrate

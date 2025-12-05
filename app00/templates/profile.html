@@ -237,11 +237,11 @@
                     </ul>
                 </li>
 
-                <li class="menu-list"><a href="#"><i class="icon-envelope-open"></i> <span>通知</span></a>
+                <li class="menu-list  nav-active"><a href="#"><i class="icon-envelope-open"></i> <span>通知</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="inbox.html"> Inbox</a></li>
-                        <li> <a href="compose.html"> Compose </a></li>
-                        <li><a href="message-view.html"> View</a></li>
+                            <li><a href="/index/inbox.html"> 发送通知</a></li>
+                            <li> <a href="/index/compose.html"> 编写通知</a></li>
+                        <li class="active"><a href="/index/message-view.html"> 查看通知</a></li>
                     </ul>
                 </li>
 
@@ -306,7 +306,7 @@
                 </li>
                 <li class="menu-list"><a href="#"><i class="icon-lock"></i> <span>Login</span></a>
                     <ul class="sub-menu-list">
-                       <li><a href="login.html"> Login </a></li>
+                       <li><a href="/login/"> Login </a></li>
                        <li><a href="forgot-password.html"> Forgot Password </a></li>
                         <li><a href="registration.html"> Registration </a></li>
                         <li><a href="locked.html"> Lockscreen </a></li>
@@ -616,6 +616,18 @@
         });
     }
     </script>
-
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/plugins/moment/moment.js"></script>
+    <script  src="/static/js/jquery.slimscroll.js "></script>
+    <script src="/static/js/jquery.nicescroll.js"></script>
+    <script src="/static/js/functions.js"></script>
+    <!-- End core plugin -->
+    
+    <!--Begin Page Level Plugin-->
+	<script src="/static/plugins/morris-chart/morris.js"></script>
+    <script src="/static/plugins/morris-chart/raphael-min.js"></script>
+    <script src="/static/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <script src="/static/pages/dashboard.js"></script>
 </body>
 </html>
