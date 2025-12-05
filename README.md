@@ -1,6 +1,10 @@
 # DB大作业（课题系统）
 
+<<<<<<< HEAD
 ## 实现版本 1.2
+=======
+## 实现版本 1.0
+>>>>>>> fd26a133c5477b4dfbb8f14c2fa24ea42b166645
 
 ## 更新操作
 
@@ -204,6 +208,7 @@ function enterEdit(){//向目标输入
 ### 29 优秀的重定位
 
 <a href="/index/"><img src="/static/images/logo-icon.png" alt=""></a>
+<<<<<<< HEAD
 
 ### 30 后台函数
 
@@ -214,3 +219,5 @@ def auto_delete_notice(sender, instance, **kwargs):
         instance.delete()
 触发
 m.save()
+=======
+>>>>>>> fd26a133c5477b4dfbb8f14c2fa24ea42b166645
