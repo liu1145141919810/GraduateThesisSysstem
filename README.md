@@ -26,6 +26,8 @@
 
 ### 1.2 页面端完全展示实现，删除通知功能，邮件查看方法啊优化
 
+## 效果界面
+
 ## 学习日志
 
 ### 1插入内容
@@ -215,6 +217,7 @@ def auto_delete_notice(sender, instance, **kwargs):
 触发
 m.save()
 
+<<<<<<< HEAD
 ### 31 crsf提交
 
 headers: {
@@ -236,3 +239,5 @@ then(...),then(...)
 ### 34 批量更新方法
 
 qs.update(showsend=False)
+=======
+>>>>>>> 76b99ebbeb49da2a6ba138373374003ae7a92455
