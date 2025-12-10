@@ -39,19 +39,41 @@ class tb_topic(models.Model):#课题表
     id = models.AutoField(primary_key=True)
     title=models.CharField(max_length=200,default='untitled')
     profession=models.CharField(max_length=100,default='unknown')
+    scale=models.IntegerField(default=0)#课题规模
+    introduction=models.TextField(default='no introduction')
     teacher_id=models.ForeignKey(tb_teacher,on_delete=models.CASCADE,default=None)
-    timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-
+    timestamp = models.DateTimeField(null=True, blank=True)
+    
 class tb_student_topic(models.Model):#学生课题关联表
     id = models.AutoField(primary_key=True)
     student_id=models.ForeignKey(tb_student,on_delete=models.CASCADE,default=None)
     topic_id=models.ForeignKey(tb_topic,on_delete=models.CASCADE,default=None)
     content_id=models.ForeignKey('tb_content',on_delete=models.CASCADE,default=None)
+    evaluation=models.TextField(default='no evaluation')
+    score=models.IntegerField(default=0)
+    STATE=[
+        ('未完成','未完成'),
+        ('已完成','已完成'),
+        ('已截止','已截止'),
+        ('已审核','已审核'),
+        ('已评分','已评分',)
+    ]
+    state=models.CharField(max_length=10,default='未完成',choices=STATE)
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['student_id', 'topic_id'], name='unique_student_topic')
+        ]
 
 class tb_content(models.Model):#内容表
     id = models.AutoField(primary_key=True) 
-    write_id=models.IntegerField(default=0)
+    content = models.TextField(default='no content')
+    stu_id=models.ForeignKey(tb_student,on_delete=models.CASCADE,default=None)
+    topic_id=models.ForeignKey(tb_topic,on_delete=models.CASCADE,default=None)
     timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['stu_id', 'topic_id'], name='unique_stu_topic')
+        ]
 
 class tb_login_log(models.Model):#登录日志
     id = models.AutoField(primary_key=True)
@@ -93,7 +115,16 @@ python manage.py migrate
 teacher0
 TeacherPwd123
 
+xxxxx@teacher.com
+couch
+Teacher5555
+
 54321@student.com
 student0
 54321Stu
+"""
+"""
+deadline_year   例如 "2025-12-08"
+deadline_day    例如 "T 14:00"
+deadline_time   例如 ":00"
 """

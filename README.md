@@ -1,6 +1,6 @@
 # DB大作业（课题系统）
 
-## 实现版本 1.2
+## 实现版本 1.8
 
 ## 更新操作
 
@@ -25,6 +25,18 @@
 ### 1.1 发送邮件进入展示页面参数区域，展示栏名字调整，页面跳转优化
 
 ### 1.2 页面端完全展示实现，删除通知功能，邮件查看方法啊优化
+
+### 1.3 学生禁止进入选题发布界面等无关部分，内容提交，批改，反馈界面初级处理
+
+### 1.4 发布选题相关搭建完毕
+
+### 1.5 选择选题界面，选择入库，选择逻辑，错误提示
+
+### 1.6 选题报告内容填入，按截至时间在学生端和展示端过滤内容
+
+### 1.7 教师评语相关的修改，以及录入,学院匹配合适才能进行
+
+### 1.8 学生和教师查看批改成绩,以及统计工作
 
 ## 效果界面
 
@@ -239,5 +251,46 @@ then(...),then(...)
 ### 34 批量更新方法
 
 qs.update(showsend=False)
-=======
->>>>>>> 76b99ebbeb49da2a6ba138373374003ae7a92455
+
+
+### 35 错误提示
+
+1 {% if error %}
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>错误！</strong>{{ error }}
+    </div>
+{% endif %}
+2  error=request.session.pop('error',None)
+    return render(request, "index.html", {"error": error})
+3  if role!=1:
+    request.session['error'] = '只有教师才能进行课题分配操作'
+    return redirect("/index/")   
+
+### 36 文段输入框
+
+ <textarea class="form-control" id="introduction" name="introduction" rows="8"></textarea>
+
+
+ ### 37 时间处理
+
+ deadline_str = data['deadline_year'] + data['deadline_day'] + data['deadline_time']
+# deadline_str = "2025-12-08T14:00:00"
+
+deadline_dt = datetime.fromisoformat(deadline_str)
+
+### 38 防止过时信息重复
+
+request.session.pop('error', None)
+
+
+### 39 重要：警告的搭建
+1.POST机制将之加入request.session
+2.后端触发器写.then(...reload)
+3.前端GET，做error=request.session.pop('error', None),然后return render({'error':error})
+4.前端写{% if error %}
+
+### 40时间填入标准形式
+2025     10-01 00：00

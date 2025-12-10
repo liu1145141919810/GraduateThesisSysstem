@@ -64,15 +64,15 @@
 
                 <li class="menu-list"><a href="#"><i class="icon-layers"></i> <span>选题</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="/index/distribute.html"> 发布选题</a></li>
-                        <li><a href="/index/myissue.html"> 我的选题</a></li>
-                        <li><a href="/index/checkissue.html">查看选题</a></li>
-                        <li><a href="/index/ui-progressbar.html">Progressbar</a></li>
-                        <li><a href="/index/ui-alert-notification.html">Alert &amp; notification</a></li>
-                        <li><a href="/index/ui-checkbox-radio.html">Checkbox-radios</a></li>
-                        <li><a href="/index/ui-range-slider.html">Range slider</a></li>
-                        <li><a href="/index/ui-modals-tooltip.html">Modals Tooltip</a></li>
-                        <li><a href="/index/typography.html">Typography</a></li>
+                       <li  class="active"><a href="/index/distribute.html"> 发布选题</a></li>
+                            <li><a href="/index/myissue.html"> 我的选题</a></li>
+                            <li><a href="/index/checkissue.html">查看选题</a></li>
+                            <li><a href="/index/homework_update.html">作业成绩查询</a></li>
+                            <li><a href="/index/homeworkcheck.html">教师查看作业</a></li>
+                            <li><a href="/index/homeworkwrite.html">作业编写界面</a></li>
+                            <li><a href="/index/ui-range-slider.html">Range slider</a></li>
+                            <li><a href="/index/ui-modals-tooltip.html">Modals Tooltip</a></li>
+                            <li><a href="/index/typography.html">Typography</a></li>
                     </ul>
                 </li>
                 
@@ -151,7 +151,7 @@
                         <li><a href="error-503.html"> 503 Error</a></li>
                     </ul>
                 </li>
-                <li class="menu-list"><a href="#"><i class="icon-lock"></i> <span>Login</span></a>
+                <li class="menu-list"><a href="#"><i class="icon-lock"></i> <span>账户</span></a>
                     <ul class="sub-menu-list">
                        <li><a href="/login/"> Login </a></li>
                        <li><a href="forgot-password.html"> Forgot Password </a></li>
@@ -179,11 +179,18 @@
             <form class="searchform">
                 <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
             </form>
-
             <!--notification menu start -->
             <div class="menu-right">
                 <ul class="notification-menu">
                     <li>
+                        {% if error %}
+                            <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <strong>错误！</strong>{{ error }}
+                            </div>
+                        {% endif %}
                         <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
                             <i class="fa fa-tasks"></i>
                             <span class="badge">8</span>

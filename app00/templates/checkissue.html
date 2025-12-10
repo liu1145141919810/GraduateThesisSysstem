@@ -43,22 +43,22 @@
             <ul class="nav nav-pills nav-stacked custom-nav">
                 <li class="menu-list"><a href="index.html"><i class="icon-home"></i> <span>Dashboard</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="index.html"> Dashboard 1</a></li>
+                        <li><a href="/index/"> Dashboard 1</a></li>
                         <li><a href="dashboard2.html"> Dashboard 2</a></li>
                     </ul>
                 </li>
 
                 <li class="menu-list  nav-active"><a href="#"><i class="icon-layers"></i> <span>选题</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="/index/distribute.html"> 发布选题</a></li>
-                        <li class="active"><a href="/index/myissue.html"> 我的选题</a></li>
-                        <li><a href="/index/checkissue.html">查看选题</a></li>
-                        <li><a href="/index/ui-progressbar.html">Progressbar</a></li>
-                        <li><a href="/index/ui-alert-notification.html">Alert &amp; notification</a></li>
-                        <li><a href="/index/ui-checkbox-radio.html">Checkbox-radios</a></li>
-                        <li><a href="/index/ui-range-slider.html">Range slider</a></li>
-                        <li><a href="/index/ui-modals-tooltip.html">Modals Tooltip</a></li>
-                        <li><a href="/index/typography.html">Typography</a></li>
+                        <li  class="active"><a href="/index/distribute.html"> 发布选题</a></li>
+                            <li><a href="/index/myissue.html"> 我的选题</a></li>
+                            <li><a href="/index/checkissue.html">查看选题</a></li>
+                            <li><a href="/index/homework_update.html">提交成绩查询</a></li>
+                            <li><a href="/index/homeworkcheck.html">教师查看作业</a></li>
+                            <li><a href="/index/homeworkwrite.html">作业编写界面</a></li>
+                            <li><a href="/index/ui-range-slider.html">Range slider</a></li>
+                            <li><a href="/index/ui-modals-tooltip.html">Modals Tooltip</a></li>
+                            <li><a href="/index/typography.html">Typography</a></li>
                     </ul>
                 </li>
                 
@@ -139,7 +139,7 @@
                 </li>
                 <li class="menu-list"><a href="#"><i class="icon-lock"></i> <span>Login</span></a>
                     <ul class="sub-menu-list">
-                       <li><a href="login.html"> Login </a></li>
+                       <li><a href="/login/"> Login </a></li>
                        <li><a href="forgot-password.html"> Forgot Password </a></li>
                         <li><a href="registration.html"> Registration </a></li>
                         <li><a href="locked.html"> Lockscreen </a></li>
@@ -160,7 +160,6 @@
 
         <!-- header section start-->
         <div class="header-section">
-
             <a class="toggle-btn"><i class="fa fa-bars"></i></a>
 
             <form class="searchform">
@@ -170,7 +169,15 @@
             <!--notification menu start -->
             <div class="menu-right">
                 <ul class="notification-menu">
-                    <li>
+                    <li>     
+                            {% if error %}
+                            <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <strong>错误！</strong>{{ error }}
+                            </div>
+                            {% endif %}
                         <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
                             <i class="fa fa-tasks"></i>
                             <span class="badge">8</span>
@@ -322,7 +329,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                           <li> <a href="#"> <i class="fa fa-wrench"></i> Settings </a> </li>
-                          <li> <a href="#"> <i class="fa fa-user"></i> 个人信息 </a> </li>
+                          <li> <a href="/profile/"> <i class="fa fa-user"></i> 个人信息 </a> </li>
                           <li> <a href="#"> <i class="fa fa-info"></i> Help </a> </li>
                           <li> <a href="#"> <i class="fa fa-lock"></i> Logout </a> </li>
                         </ul>
@@ -342,7 +349,7 @@
               
           <!--Start Page Title-->
            <div class="page-title-box">
-                <h4 class="page-title">Panels</h4>
+                <h4 class="page-title">查看选题</h4>
                 <ol class="breadcrumb">
                     <li>
                         <a href="#">Dashboard</a>
@@ -351,7 +358,7 @@
                         <a href="#">UI Elements</a>
                     </li>
                     <li class="active">
-                        Panels
+                        查看选题
                     </li>
                 </ol>
                 <div class="clearfix"></div>
@@ -360,274 +367,58 @@
            
            
                <!--Start row-->
-                 <div class="row">
-                     <div class="panel-wrap">
-                    <div class="col-md-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel Default</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="panel panel-color panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel Primary</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="panel panel-color panel-success">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel Success</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                   </div>
-                 </div>
+                 <div class="col-md-15">
+                                <div class="white-box">
+                                    <h4 class="header-title">已编写选题</h4>
+                                    {%if message%}
+                                        {%for msg in message %}
+                                        <div class="button-wrap">
+                                        <button type="button" class="btn btn-success btn-block">题目:{{msg.title}}</button>
+                                        <div class="btn-group-vertical m-b-6">
+                                             <button type="button" class="btn btn-primary">学院</button>
+                                            <input type="text" class="form-control" id="to" name="to" value="{{ msg.profession}}" readonly>
+                                        </div>
+                                        <div class="btn-group-vertical m-b-6">
+                                             <button type="button" class="btn btn-success">老师</button>
+                                            <input type="text" class="form-control" id="teacher" name="teacher" value="{{ msg.teacher}}" readonly>
+                                        </div>
+                                
+                                        <div class="btn-group-vertical m-b-6">
+                                             <button type="button" class="btn btn-warning">当前容量</button>
+                                            <input type="text" class="form-control" id="teacher" name="teacher" value="{{ msg.scale }}" readonly>
+                                        </div>
+                                        <div class="btn-group-vertical m-b-6">
+                                            <button type="button" class="btn btn-danger">截至年</button>
+                                            <input type="text" class="form-control" id="teacher" name="teacher" value="{{ msg.timestamp.year }}" readonly>
+                                        </div>
+                                        <div class="btn-group-vertical m-b-6">
+                                            <button type="button" class="btn btn-danger">截至日</button>
+                                            <input type="text" class="form-control" id="teacher" name="teacher" value="{{msg.timestamp.month}}-{{ msg.timestamp.day }}" readonly>
+                                        </div>
+                                        <div class="btn-group-vertical m-b-6">
+                                            <button type="button" class="btn btn-danger">截至时刻</button>
+                                            <input type="text" class="form-control" id="teacher" name="teacher" value="{{ msg.timestamp.hour }}:{{ msg.timestamp.minute }}" readonly>
+                                        </div>
+                                        <button type="button" class="btn btn-default btn-block">内容介绍</button>
+                                        <!--文字输入框-->
+                                       <textarea class="form-control" id="introduction" name="introduction" rows="8" readonly>{{msg.introduction}}</textarea>
+                                        <!--提交按钮-->
+                                        <div class="compose-options">
+                                        <div class="pull-right">
+                                            <input id="signup-btn" type="submit" value="选课" class="btn btn-primary btn-block" data="{{msg.id}}">
+                                        </div>
+                                        </div>
+                                    </div>
+                                        {% endfor %}
+                                        {%else%}
+                                        <div class="button-wrap">
+                                                <button type="button" class="btn btn-default">暂无发布选题</button>
+                                            </div>
+                                        {% endif %}
+                                        </div>
+                            </div><!--/col-md-6-->
                 <!--End row-->
                
-                 <!--Start row-->
-                 <div class="row">
-                     <div class="panel-wrap">
-                    <div class="col-md-4">
-                        <div class="panel panel-color  panel-info">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel Info</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="panel panel-color panel-danger">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel Danger</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="panel panel-color panel-warning">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel Warning</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                   </div>
-                 </div>
-                <!--End row-->
-
-                 <!--Start row-->
-                 <div class="row">
-                     <div class="panel-wrap">
-                    <div class="col-md-4">
-                        <div class="panel panel-color panel-purple">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel Purple</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="panel panel-color panel-inverse">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel Inverse</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="panel panel-color panel-pink">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel pink</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                   </div>
-                 </div>
-                <!--End row-->
-                
-               <!--Start row-->
-                 <div class="row">
-                     <div class="panel-wrap">
-                    <div class="col-md-4">
-                        <div class="panel panel-border panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel Default</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="panel panel-border panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel Primary</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="panel panel-border panel-success">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel Success</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                   </div>
-                 </div>
-                <!--End row-->
-               
-                 <!--Start row-->
-                 <div class="row">
-                     <div class="panel-wrap">
-                    <div class="col-md-4">
-                        <div class="panel panel-border  panel-info">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel Info</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="panel panel-border panel-danger">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel Danger</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="panel panel-border panel-warning">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel Warning</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                   </div>
-                 </div>
-                <!--End row-->
-
-                 <!--Start row-->
-                 <div class="row">
-                  <div class="panel-wrap">
-                    <div class="col-md-4">
-                        <div class="panel panel-border panel-purple">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel Purple</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="panel panel-border panel-inverse">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel Inverse</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="panel panel-border panel-pink">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Panel pink</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                   </div>
-                 </div>
-                <!--End row-->
                
                
 			    </div>
@@ -650,6 +441,30 @@
     <script  src="/static/js/jquery.slimscroll.js "></script>
     <script src="/static/js/jquery.nicescroll.js"></script>
     <script src="/static/js/functions.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const enterButton = document.querySelectorAll('#signup-btn');
+            enterButton.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    console.log('Button clicked');
+                    console.log("data-id:", button.getAttribute('data'));
+                    fetch('/index/checkissue.html', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'  // Include CSRF token for Django
+                    },
+                    body: JSON.stringify({
+                        title_id: button.getAttribute('data'),
+                    })
+                }).then(response => {
+    // 收到服务器响应后立即刷新
+    window.location.reload();
+})
+        });
+    });
+})
+    </script>
     <!-- End core plugin -->
 
 

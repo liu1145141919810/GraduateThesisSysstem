@@ -165,16 +165,6 @@ def index_page(request, page):
         return redirect("/login/")
     # 假设模板放在 templates/ 下且文件名是 ui-buttons.html、ui-panels.html 等
     template_name = f"{page}.html"
-    
-    if template_name=="myissue.html" or template_name=="distribute.html" or template_name=="checkissue.html":
-        return issue_deal(request,page)
-    
-     # 先获取当前用户
-
-    user_id = request.session.get('user_id')
-    sent_notices = []
-    user = None
-
     login_user = tb_login.objects.get(id=request.session.get('user_id'))
     role=login_user.role
     username=""
@@ -182,6 +172,15 @@ def index_page(request, page):
         username=tb_teacher.objects.get(email=login_user.email).username
     elif role==2:
         username=tb_student.objects.get(email=login_user.email).username
+    
+    if tellit(template_name):
+        return issue_deal(request,page,role)
+    
+     # 先获取当前用户
+
+    user_id = request.session.get('user_id')
+    sent_notices = []
+    user = None
 
     # 可选：先检查模板是否存在，避免没有模板时报 500
     try:
@@ -311,7 +310,9 @@ def index(request):
     print("Session 数据：", request.session.items())
     if request.method == "POST":
        pass
-    return render(request, "index.html")
+    error=request.session.pop('error',None)
+    print("Error message on index page:",error)
+    return render(request, "index.html", {"error": error})
 #========================
 def profile(request):
     """个人信息页面（优化：实时查询数据库最新数据）"""
@@ -438,13 +439,31 @@ def profile(request):
         print(f"个人信息页面错误: {e}")
         return redirect("/login/")
     
-def issue_deal(request,page):
+def issue_deal(request,page,role=None):
+    print("role :",role)
     template=f"{page}.html"
      # 可选：先检查模板是否存在，避免没有模板时报 500
     if template=="myissue.html":
-        myissue(request)
+        if role!=2:
+           request.session['error'] = '只有学生才能查看作业'
+           return redirect("/index/")
+        return myissue(request)
     elif template=="distribute.html":
-        distribute(request)
+        if role!=1:
+           request.session['error'] = '只有教师才能进行课题分配操作'
+           return redirect("/index/")
+        return distribute(request)
     elif template=="checkissue.html":
-        checkissue(request)
-    return render(request, f"{page}.html")
+        return checkissue(request,role)
+    elif template=="homework_update.html":
+        return homework_update(request,role)
+    elif template=="homeworkcheck.html":
+        if role!=1:
+           request.session['error'] = '只有教师才能批改作业'
+           return redirect("/index/")
+        return homeworkcheck(request)
+    elif template=="homeworkwrite.html":
+        if role!=2:
+           request.session['error'] = '只有学生才能编写作业'
+           return redirect("/index/")
+        return homeworkwrite(request)
