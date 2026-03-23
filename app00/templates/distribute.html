@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="/static/images/favicon.png" type="image/png">
+<title></title>
+    <link href="/static/css/icons.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/responsive.css" rel="stylesheet">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.min.js"></script>
+        <script src="js/respond.min.js"></script>
+    <![endif]-->
+<style>
+    .form-label-item {
+        display: block;
+        font-weight: bold;
+        color: #1D2129;
+        padding: 8px 0;
+        margin: 0;
+        border: none;
+        background: none;
+    }
+    .form-control {
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .label-wrap {
+        margin-bottom: 12px;
+    }
+    .double-select {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+    }
+    .double-select select {
+        flex: 1;
+        border-radius: 0;
+        border: 1px solid #ccc;
+        padding: 6px 12px;
+        /* 确保下拉框选项正常换行 */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+</head>
+
+<body class="sticky-header">
+
+    <!--Start left side Menu-->
+    <div class="left-side sticky-left-side">
+
+        <!--logo-->
+        <div class="logo">
+            <a href="index.html"><img src="/static/images/logo.png" alt=""></a>
+        </div>
+
+        <div class="logo-icon text-center">
+            <a href="index.html"><img src="/static/images/logo-icon.png" alt=""></a>
+        </div>
+        <!--logo-->
+        <div class="left-side-inner">
+            <!--Sidebar nav-->
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li class="menu-list"><a href="index.html"><i class="icon-home"></i> <span>首页</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="index.html"> Dashboard 1</a></li>
+                        <li><a href="dashboard2.html"> Dashboard 2</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="#"><i class="icon-layers"></i> <span>选题</span></a>
+                    <ul class="sub-menu-list">
+                        <li  class="active"><a href="/index/distribute.html"> 发布选题</a></li>
+                            <li><a href="/index/myissue.html"> 我的选题</a></li>
+                            <li><a href="/index/checkissue.html">查看选题</a></li>
+                            <li><a href="/index/homework_update.html">作业成绩查询</a></li>
+                            <li><a href="/index/homeworkcheck.html">教师查看作业</a></li>
+                            <li><a href="/index/homeworkwrite.html">作业编写界面</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list  nav-active"><a href="#"><i class="icon-envelope-open"></i> <span>通知</span></a>
+                    <ul class="sub-menu-list">
+                            <li><a href="/index/inbox.html"> 发送通知</a></li>
+                            <li> <a href="/index/compose.html"> 编写通知</a></li>
+                        <li class="active"><a href="/index/message-view.html"> 查看通知</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="#"><i class="icon-folder"></i> <span>个人信息</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="/profile/">个人信息</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="#"><i class="icon-settings"></i> <span>管理员</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="manager.html"> 管理员</a></li>
+                    </ul>
+                <li class="menu-list"><a href="#"><i class="icon-lock"></i> <span>Login</span></a>
+                    <ul class="sub-menu-list">
+                       <li><a href="/login/"> Login </a></li>
+                       <li><a href="forgot-password.html"> Forgot Password </a></li>
+                        <li><a href="registration.html"> Registration </a></li>
+                        <li><a href="locked.html"> Lockscreen </a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!--End sidebar nav-->
+
+        </div>
+    </div>
+    <!--End left side menu-->
+    
+    
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <div class="header-section">
+
+            <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+
+            <form class="searchform">
+                <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
+            </form>
+
+            <!--notification menu start -->
+            <div class="menu-right">
+                <ul class="notification-menu">
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                            <i class="fa fa-tasks"></i>
+                            <span class="badge">8</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-head pull-right">
+                            <h5 class="title">You have 8 pending task</h5>
+                            <ul class="dropdown-list">
+                            <li class="notification-scroll-list notification-list ">
+                            <!-- list item-->
+                  
+                    
+                                
+                            </li>
+                            <li class="last"> <a href="#">View all notifications</a> </li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="badge">4</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-head pull-right">
+                        <h5 class="title">Notifications</h5>
+                        <ul class="dropdown-list normal-list">
+                        <li class="message-list message-scroll-list">
+                        </li>
+                        <li class="last"> <a  href="#">All Messages</a> </li>
+                    </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <img src="/static/images/users/avatar-6.jpg" alt="" />
+                            {{request.session.username}}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                        <li> <a href="#"> <i class="fa fa-wrench"></i> Settings </a> </li>
+                        <li> <a href="/profile/"> <i class="fa fa-user"></i> 个人信息 </a> </li>
+                        <li> <a href="#"> <i class="fa fa-info"></i> Help </a> </li>
+                        <li> <a href="#"> <i class="fa fa-lock"></i> Logout </a> </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <!--notification menu end -->
+
+        </div>
+        <!-- header section end-->
+
+
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            
+            <!--Start Page Title-->
+            <div class="page-title-box">
+                    <h4 class="page-title">教师选题发布端</h4>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#">UI Elements</a>
+                        </li>
+                        <li class="active">
+                            Buttons
+                        </li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+                <!--End Page Title-->          
+    
+            <!--Start row-->
+            <div class="row">
+                <div class="col-md-15">
+                    <div class="white-box">
+                        <h4 class="header-title">编写新选题</h4>
+                        <div class="col-md-15">
+                        <div class="button-wrap">
+                            <!-- 待编写栏标题 -->
+                            <div class="form-label-item">待编写栏</div>
+                            
+                            <!-- 学院 -->
+                            <div class="label-wrap">
+                                <label class="form-label-item">学院</label>
+                                <input type="text" class="form-control" id="college" name="college" value="{{ college }}" readonly>
+                            </div>
+                            
+                            <!-- 老师 -->
+                            <div class="label-wrap">
+                                <label class="form-label-item">老师</label>
+                                <input type="text" class="form-control" id="teacher" name="teacher" value="{{ teacher }}" readonly>
+                            </div>
+                            
+                            <!-- 标题 -->
+                            <div class="label-wrap">
+                                <label class="form-label-item">标题</label>
+                                <input type="text" class="form-control" id="title" name="title" value="" >
+                            </div>
+                    
+                            <!-- 当前容量 -->
+                            <div class="label-wrap">
+                                <label class="form-label-item">当前容量</label>
+                                <input type="text" class="form-control" id="capacity" name="capacity">
+                            </div>
+                            <!-- 截至年 -->
+                            <div class="label-wrap">
+                                <label class="form-label-item">截至年</label>
+                                <input type="text" class="form-control" id="deadline_year" name="deadline_year">
+                            </div>
+                            
+                            <!-- 截至日期（月/日）- 下拉选择 -->
+                            <div class="label-wrap">
+                                <label class="form-label-item">截至日期（月/日）</label>
+                                <div class="double-select">
+                                    <!-- 月份下拉：默认提示单独作为option -->
+                                    <select class="form-control" id="deadline_month" name="deadline_month">
+                                        <option value="">请选择月份</option>
+                                        <script>
+                                            const monthSelect = document.currentScript.parentElement;
+                                            for (let i = 1; i <= 12; i++) {
+                                                const option = document.createElement('option');
+                                                option.value = i;
+                                                option.textContent = i + '月';
+                                                monthSelect.appendChild(option);
+                                            }
+                                        </script>
+                                    </select>
+                                    <!-- 日期下拉：默认提示单独作为option -->
+                                    <select class="form-control" id="deadline_day" name="deadline_day">
+                                        <option value="">请选择日期</option>
+                                        <script>
+                                            const daySelect = document.currentScript.parentElement;
+                                            for (let i = 1; i <= 31; i++) {
+                                                const option = document.createElement('option');
+                                                option.value = i;
+                                                option.textContent = i + '日';
+                                                daySelect.appendChild(option);
+                                            }
+                                        </script>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- 截至时刻（小时+分钟）- 下拉选择 -->
+                            <div class="label-wrap">
+                                <label class="form-label-item">截至时刻</label>
+                                <div class="double-select">
+                                    <!-- 小时下拉：默认提示单独作为option -->
+                                    <select class="form-control" id="deadline_hour" name="deadline_hour">
+                                        <option value="">请选择小时</option>
+                                        <script>
+                                            // 动态生成0-23小时选项
+                                            const hourSelect = document.currentScript.parentElement;
+                                            for (let i = 0; i < 24; i++) {
+                                                const option = document.createElement('option');
+                                                option.value = i;
+                                                option.textContent = i + '时';
+                                                hourSelect.appendChild(option);
+                                            }
+                                        </script>
+                                    </select>
+                                    <!-- 分钟下拉：默认提示单独作为option -->
+                                    <select class="form-control" id="deadline_minute" name="deadline_minute">
+                                        <option value="">请选择分钟</option>
+                                        <script>
+                                            const minuteSelect = document.currentScript.parentElement;
+                                            for (let i = 0; i < 60; i += 5) {
+                                                const val = i < 10 ? `0${i}` : i;
+                                                const option = document.createElement('option');
+                                                option.value = val;
+                                                option.textContent = val + '分';
+                                                minuteSelect.appendChild(option);
+                                            }
+                                        </script>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- 内容介绍 -->
+                            <div class="label-wrap">
+                                <label class="form-label-item">内容介绍</label>
+                                <textarea class="form-control" id="introduction" name="introduction" rows="8"></textarea>
+                            </div>
+                            
+                            <!-- 提交按钮 -->
+                            <div class="compose-options">
+                            <div class="pull-right">
+                                <input id="signup-btn" type="submit" value="提交" class="btn btn-primary">
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+            </div> <!--/col-md-6-->
+            
+                
+                <div class="col-md-15">
+                    <div class="white-box">
+                        <h4 class="header-title">已编写选题</h4>
+                        {%if message%}
+                            {%for msg in message %}
+                            <div class="item">
+                            <div class="button-wrap">
+                            <!-- 题目标题 -->
+                            <div class="form-label-item">题目:{{msg.title}}</div>
+                            
+                            <!-- 学院 -->
+                            <div class="label-wrap">
+                                <label class="form-label-item">学院</label>
+                                <input type="text" class="form-control" id="to" name="to" value="{{ msg.profession}} " data-field="college" readonly>
+                            </div>
+                            
+                            <!-- 老师 -->
+                            <div class="label-wrap">
+                                <label class="form-label-item">老师</label>
+                                <input type="text" class="form-control" id="teacher" name="teacher" value="{{ teacher}}" data-field="teacher" readonly>
+                            </div>
+                    
+                            <!-- 当前容量 -->
+                            <div class="label-wrap">
+                                <label class="form-label-item">当前容量</label>
+                                <input type="text" class="form-control" id="scale" name="scale" value="{{ msg.scale }}" data-field="scale" readonly>
+                            </div>
+                            
+                            <!-- 截至年 -->
+                            <div class="label-wrap">
+                                <label class="form-label-item">截至年</label>
+                                <input type="text" class="form-control" id="year" name="year" value="{{ msg.timestamp.year }}" data-field="year" readonly>
+                            </div>
+                            
+                            <!-- 截至日期（月/日） -->
+                            <div class="label-wrap">
+                                <label class="form-label-item">截至日期（月/日）</label>
+                                <input type="text" class="form-control" id="month_day" name="month_day" value="{{msg.timestamp.month}}-{{ msg.timestamp.day }}" data-field="month_day" readonly>
+                            </div>
+                            
+                            <!-- 截至时刻 -->
+                            <div class="label-wrap">
+                                <label class="form-label-item">截至时刻</label>
+                                <input type="text" class="form-control" id="time" name="time" value="{{ msg.timestamp.hour }}:{{ msg.timestamp.minute }}" data-field="time" readonly>
+                            </div>
+                            
+                            <!-- 内容介绍 -->
+                            <div class="label-wrap">
+                                <label class="form-label-item">内容介绍</label>
+                                <textarea class="form-control" id="introduction" name="introduction" rows="8" data-field="introduction" readonly>{{msg.introduction}}</textarea>
+                            </div>
+                            
+                            <!-- 修改按钮 -->
+                            <div class="compose-options">
+                            <div class="pull-right">
+                                <button id="recify_btn" class="btn btn-danger" value="{{msg.id}}" onclick="deleteItem({{msg.id}})">删除</button>
+                                 <button id="recify_btn" class="btn btn-primary" value="{{msg.id}}">修改</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                            {% endfor %}
+                            {%else%}
+                            <div class="button-wrap">
+                                    <div class="form-label-item">暂无发布选题</div>
+                                </div>
+                            {% endif %}
+                            </div>
+                </div><!--/col-md-6-->
+            </div>
+            <!--End row-->
+            
+                </div>
+        <!-- End Wrapper-->
+
+
+        <!--Start  Footer -->
+        <footer class="footer-main"></footer>	
+        <!--End footer -->
+
+    </div>
+    <!--End main content -->
+    
+    <!--Begin core plugin -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/plugins/moment/moment.js"></script>
+    <script  src="/static/js/jquery.slimscroll.js "></script>
+    <script src="/static/js/jquery.nicescroll.js"></script>
+    <script src="/static/js/functions.js"></script>
+    <!-- End core plugin -->
+    <script src="/static/plugins/summernote-master/summernote.min.js"></script>
+    <script src="/static/pages/compose.js"></script>
+    <script>
+    console.log("{{college}}","aaaaaaa");
+    $(document).ready(function(){
+        $('.summernote').summernote({
+        height: 200
+        });
+    });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const enterButton = document.getElementById('signup-btn');
+        enterButton.addEventListener('click', function() {
+            // 拼接月/日和时刻
+            const deadline_month = document.getElementById('deadline_month').value;
+            const deadline_day = document.getElementById('deadline_day').value;
+            const deadline_hour = document.getElementById('deadline_hour').value;
+            const deadline_minute = document.getElementById('deadline_minute').value;
+            
+            const to = document.getElementById('college').value;
+            const title = document.getElementById('title').value;
+            const teacher = document.getElementById('teacher').value;
+            const capacity = document.getElementById('capacity').value;
+            const deadline_year = document.getElementById('deadline_year').value;
+            // 拼接月-日（如 3-15）
+            const deadline_day_comb = `${deadline_month}-${deadline_day}`;
+            // 拼接时刻（如 14:30）
+            const deadline_time_comb = `${deadline_hour}:${deadline_minute}`;
+            const content = document.getElementById('introduction').value;
+
+            // 校验必填项
+            if (!title || !capacity || !deadline_year || !deadline_month || !deadline_day || !deadline_hour || !deadline_minute) {
+                alert('请填写完整选题信息（标题、容量、截止时间为必填）');
+                return;
+            }
+
+            const data = {
+                type:1,
+                title: title,
+                collage: to,
+                teacher: teacher,
+                capacity: capacity,
+                deadline_year: deadline_year,
+                deadline_day: deadline_day_comb,
+                deadline_time: deadline_time_comb,
+                content: content
+            };
+
+            fetch('/index/distribute.html', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify(data)
+            }).then(res => res.json())
+              .then(result => {
+                  if (result.code === 200) {
+                      alert('选题发布成功');
+                      window.location.reload();
+                  } else {
+                      alert('发布失败：' + result.msg);
+                  }
+              }).catch(err => {
+                  console.error('请求失败：', err);
+                  alert('发布失败，请重试');
+              });
+        });
+        });
+    </script>
+    <script>
+        function deleteItem(title_id) {
+            fetch('/index/distribute.html', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    type:3,
+                    title_id:title_id
+                })
+            }).then(res => res.json())
+              .then(result => {
+                  if (result.code === 200) {
+                      alert('删除成功');
+                      window.location.reload();
+                  } else {
+                      alert('删除失败：' + result.msg);
+                  }
+              }).catch(err => {
+                  console.error('删除请求失败：', err);
+                  alert('删除失败，请重试');
+              });
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        //得到所有recify按钮
+        const recifyButton = document.querySelectorAll('#recify_btn');
+        recifyButton.forEach(function(button) {
+            button.addEventListener('click', function() {
+                const context=button.textContent;
+                item = button.closest('.item');
+                college = item.querySelector('[data-field="college"]');
+                scale = item.querySelector('[data-field="scale"]'); 
+                year = item.querySelector('[data-field="year"]');
+                month_day = item.querySelector('[data-field="month_day"]');
+                time = item.querySelector('[data-field="time"]');
+                introduction = item.querySelector('[data-field="introduction"]');
+                console.log("context:",context);
+                if(context=="修改"){
+                    college.removeAttribute("readonly");
+                    scale.removeAttribute("readonly");
+                    year.removeAttribute("readonly");
+                    month_day.removeAttribute("readonly");
+                    time.removeAttribute("readonly");
+                    introduction.removeAttribute("readonly");
+                    button.textContent="保存";
+                    // 编辑状态样式提示
+                    [college, scale, year, month_day, time, introduction].forEach(el => {
+                        el.style.borderColor = "#666";
+                    });
+                }
+                else if(context=="保存"){
+                    fetch('/index/distribute.html', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        body: JSON.stringify({
+                            type:2,
+                            title_id:button.value,
+                            college: college.value,
+                            scale: scale.value,
+                            year: year.value,
+                            month_day: month_day.value,
+                            time: time.value,
+                            introduction: introduction.value
+                        })
+                    }).then(res => res.json())
+                      .then(result => {
+                          if (result.code === 200) {
+                              alert('修改成功');
+                              // 关闭编辑状态
+                              college.setAttribute("readonly", true);
+                              scale.setAttribute("readonly", true);
+                              year.setAttribute("readonly", true);
+                              month_day.setAttribute("readonly", true);
+                              time.setAttribute("readonly", true);
+                              introduction.setAttribute("readonly", true);
+                              button.textContent="修改";
+                              // 恢复样式
+                              [college, scale, year, month_day, time, introduction].forEach(el => {
+                                  el.style.borderColor = "#ccc";
+                              });
+                          } else {
+                              alert('修改失败：' + result.msg);
+                          }
+                      }).catch(err => {
+                          console.error('修改请求失败：', err);
+                          alert('修改失败，请重试');
+                      });
+                }
+            })
+        });
+        });
+    </script>
+</body>
+
+</html>

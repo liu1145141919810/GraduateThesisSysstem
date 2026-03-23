@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/images/favicon.png" type="image/png">
+    <title></title>
+    <link href="/static/css/icons.css" rel="stylesheet">
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/style.css" rel="stylesheet">
+        <link href="/static/css/responsive.css" rel="stylesheet">
+        
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="js/html5shiv.min.js"></script>
+            <script src="js/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body class="sticky-header">
+
+
+        <!--Start left side Menu-->
+        <div class="left-side sticky-left-side">
+
+            <!--logo-->
+            <div class="logo">
+                <a href="/index/"><img src="/static/images/logo.png" alt=""></a>
+            </div>
+            
+            <div class="logo-icon text-center">
+                <a href="index.html"><img src="/static/images/logo-icon.png" alt=""></a>
+            </div>
+            <!--logo-->
+
+            <div class="left-side-inner">
+                <!--Sidebar nav-->
+                           <!--Sidebar nav-->
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li class="menu-list"><a href="index.html"><i class="icon-home"></i> <span>首页</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="index.html"> Dashboard 1</a></li>
+                        <li><a href="dashboard2.html"> Dashboard 2</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="#"><i class="icon-layers"></i> <span>选题</span></a>
+                    <ul class="sub-menu-list">
+                        <li  class="active"><a href="/index/distribute.html"> 发布选题</a></li>
+                            <li><a href="/index/myissue.html"> 我的选题</a></li>
+                            <li><a href="/index/checkissue.html">查看选题</a></li>
+                            <li><a href="/index/homework_update.html">作业成绩查询</a></li>
+                            <li><a href="/index/homeworkcheck.html">教师查看作业</a></li>
+                            <li><a href="/index/homeworkwrite.html">作业编写界面</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list  nav-active"><a href="#"><i class="icon-envelope-open"></i> <span>通知</span></a>
+                    <ul class="sub-menu-list">
+                            <li><a href="/index/inbox.html"> 发送通知</a></li>
+                            <li> <a href="/index/compose.html"> 编写通知</a></li>
+                        <li class="active"><a href="/index/message-view.html"> 查看通知</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="#"><i class="icon-folder"></i> <span>个人信息</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="/profile/">个人信息</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="#"><i class="icon-settings"></i> <span>管理员</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="/index/manager.html"> 管理员</a></li>
+                    </ul>
+                <li class="menu-list"><a href="#"><i class="icon-lock"></i> <span>Login</span></a>
+                    <ul class="sub-menu-list">
+                       <li><a href="/login/"> Login </a></li>
+                       <li><a href="forgot-password.html"> Forgot Password </a></li>
+                        <li><a href="registration.html"> Registration </a></li>
+                        <li><a href="locked.html"> Lockscreen </a></li>
+                    </ul>
+                </li>
+            </ul>
+                <!--End sidebar nav-->
+
+            </div>
+        </div>
+        <!--End left side menu-->
+
+
+        <!-- main content start-->
+        <div class="main-content" >
+
+            <!-- header section start-->
+            <div class="header-section">
+
+                <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+
+                <form class="searchform">
+                    <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
+                </form>
+
+                <!--notification menu start -->
+                <div class="menu-right">
+                    <ul class="notification-menu">
+                        <li>
+                            <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                                <i class="fa fa-tasks"></i>
+                                <span class="badge">8</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-head pull-right">
+                                <h5 class="title">You have 8 pending task</h5>
+                                <ul class="dropdown-list">
+                                <li class="notification-scroll-list notification-list ">
+                                <!-- list item-->
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left p-r-10">
+                                            <em class="fa  fa-shopping-cart noti-primary"></em>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">A new order has been placed.</h5>
+                                            <p class="m-0">
+                                                <small>29 min ago</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                </li>
+                                <li class="last"> <a href="#">View all notifications</a> </li>
+                                </ul>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="badge">4</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-head pull-right">
+                            <h5 class="title">Notifications</h5>
+                            <ul class="dropdown-list normal-list">
+                            <li class="message-list message-scroll-list">
+                            <a href="#">
+                                <span class="photo"> <img src="/static/images/users/avatar-8.jpg" class="img-circle" alt="img"></span>
+                                <span class="subject">John Doe</span>
+                                <span class="message"> New tasks needs to be done</span>
+                                <span class="time">15 minutes ago</span>
+                            </a>
+                            </li>
+                            <li class="last"> <a  href="#">All Messages</a> </li>
+                        </ul>
+                            </div>
+                        </li>
+                        <li>
+                            {% if username %}
+                            <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <img src="/static/images/users/avatar-6.jpg" alt="" />
+                                {{ username }}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                            <li> <a href="#"> <i class="fa fa-wrench"></i> Settings </a> </li>
+                            <li> <a href="/profile"> <i class="fa fa-user"></i> Profile </a> </li>
+                            <li> <a href="#"> <i class="fa fa-info"></i> Help </a> </li>
+                            <li> <a href="#"> <i class="fa fa-lock"></i> Logout </a> </li>
+                            </ul>
+                            {% endif %}
+                        </li>
+
+                    </ul>
+                </div>
+                <!--notification menu end -->
+
+            </div>
+            <!-- header section end-->
+<!--body wrapper start-->
+            <div class="wrapper">
+    <!--Start Page Title-->
+    <div class="page-title-box">
+        <h4 class="page-title">管理员控制台</h4>
+        <ol class="breadcrumb">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">管理功能</a></li>
+            <li class="active">系统管理</li>
+        </ol>
+        <div class="clearfix"></div>
+    </div>
+    <!--End Page Title-->
+
+    <!-- 登录日志区域 -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h3 class="box-title m-b-20">登录日志</h3>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>用户名</th>
+                                <th>登录时间</th>
+                                <th>IP地址</th>
+                                <th>登录状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for log in login_logs %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ log.username_id }}</td>
+                                <td>{{ log.log_time }}</td>
+                                <td>无</td>
+                                <td>{% if log.status == 'success' %}
+                               <span class="label label-success">{{ log.status }}</span>
+                                {% else %}
+                                <span class="label label-danger">{{ log.status }}</span>
+                                {% endif %}
+                            </td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="5" class="text-center">暂无登录日志</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 账号管理区域 -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h3 class="box-title m-b-20">账号管理
+                    <button class="btn btn-sm btn-primary pull-right" onclick="addUser()">添加账号</button>
+                </h3>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>用户名</th>
+                                <th>角色</th>
+                                <th>邮箱</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{% if user.role == 1 %}
+                                    教师
+                                    {% else %}
+                                    学生
+                                    {% endif %}
+                                </td>
+                                <td>{{ user.email }}</td>
+                                <td>{% if user.usage_state %}
+                                    <span class="label label-success">启用</span>
+                                    {% else %}
+                                    <span class="label label-danger" >禁用</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <button class="btn btn-xs btn-info" onclick="editUser({{ user.id }})">编辑</button>
+                                    {% if user.usage_state %}
+                                    <button class="btn btn-xs btn-warning" onclick="ban_usage({{ user.id }})">禁用</button>
+                                    {% else %}
+                                    <button class="btn btn-xs btn-success" onclick="enable_user({{ user.id }})">启用</button>
+                                    {% endif %}
+                                    <button class="btn btn-xs btn-danger" onclick="deleteUser({{ user.id }})">删除</button>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="6" class="text-center">暂无账号数据</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 选题管理区域 -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h3 class="box-title m-b-20">选题管理</h3>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>选题标题</th>
+                                <th>发布者</th>
+                                <th>发布时间</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for issue in issues %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ issue.title }}</td>
+                                <td>{{ issue.publisher }}</td>
+                                <td>{{ issue.publish_time }}</td>
+                                <td>
+                                    {% if issue.status == 'published' %}
+                                    <span class="label label-primary">已发布</span>
+                                    {% else %}
+                                    <span class="label label-default">未发布</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <button class="btn btn-xs btn-info" onclick="editIssue({{ issue.id }})">编辑</button>
+                                    <button class="btn btn-xs btn-danger" onclick="deleteIssue({{ issue.id }})">删除</button>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="6" class="text-center">暂无选题数据</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 用户信息编辑模态框 -->
+<div id="userEditModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">编辑用户信息</h4>
+      </div>
+      <div class="modal-body">
+        <form id="userEditForm">
+          {% csrf_token %}
+          <input type="hidden" id="editUserId">
+          <div class="form-group">
+            <label>用户名:</label>
+            <input type="text" class="form-control" id="editUsername" readonly>
+          </div>
+          <div class="form-group">
+            <label>邮箱:</label>
+            <input type="email" class="form-control" id="editEmail">
+          </div>
+          <div class="form-group">
+            <label>角色:</label>
+            <select class="form-control" id="editRole">
+              <option value="teacher">教师</option>
+              <option value="student">学生</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>状态:</label>
+            <select class="form-control" id="editStatus">
+              <option value="true">启用</option>
+              <option value="false">禁用</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>真实姓名:</label>
+            <input type="text" class="form-control" id="editDisplayName">
+          </div>
+          <div class="form-group">
+            <label>手机号:</label>
+            <input type="text" class="form-control" id="editPhone">
+          </div>
+          <div class="form-group">
+            <label>学院:</label>
+            <input type="text" class="form-control" id="editCollege">
+          </div>
+          <div class="form-group">
+            <label>专业:</label>
+            <input type="text" class="form-control" id="editMajor">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" onclick="saveUserEdit()">保存修改</button>
+      </div>
+    </div>
+  </div>
+</div>        
+
+        </div>
+        <!--End main content -->
+        
+
+
+        <!--Begin core plugin -->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/plugins/moment/moment.js"></script>
+        <script  src="/static/js/jquery.slimscroll.js "></script>
+        <script src="/static/js/jquery.nicescroll.js"></script>
+        <script src="/static/js/functions.js"></script>
+        <!-- End core plugin -->
+
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src="/static/plugins/sweetalert/sweet-alert.js"></script>
+        <script src="/static/pages/jquery.sweet-alert.custom.js"></script>
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script>
+        // 账号管理相关操作
+
+function ban_usage(userId) {
+    swal({
+        title: "确定禁用该账号吗？",
+        text: "禁用后该账号将无法登录系统！",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "确认禁用",
+        cancelButtonText: "取消",
+        closeOnConfirm: false
+    }, function() {
+        // 发送禁用请求
+        $.post("/index/manager.html", {id: userId, csrfmiddlewaretoken: "{{ csrf_token }}"}, function(data) {
+            if (data.success) {
+                swal("禁用成功！", "该账号已被禁用", "success");
+                setTimeout(function(){window.location.reload();}, 1500);
+            } else {
+                swal("禁用失败", data.msg, "error");
+            }
+        });
+    });
+}
+
+function enable_user(userId) {
+    swal({
+        title: "确定启用该账号吗？",
+        text: "启用后该账号将可以正常登录系统！",
+        type: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#5cb85c",
+        confirmButtonText: "确认启用",
+        cancelButtonText: "取消",
+        closeOnConfirm: false
+    }, function() {
+        // 发送启用请求
+        $.post("/index/manager.html", {id: userId, action: 'enable', csrfmiddlewaretoken: "{{ csrf_token }}"}, function(data) {
+            if (data.success) {
+                swal("启用成功！", "该账号已被启用", "success");
+                setTimeout(function(){window.location.reload();}, 1500);
+            } else {
+                swal("启用失败", data.msg, "error");
+            }
+        });
+    });
+}
+
+function addUser() {
+    swal({
+        title: "添加新账号",
+        text: "请在新页面中填写账号信息",
+        type: "info",
+        showCancelButton: false,
+        confirmButtonText: "前往添加",
+        closeOnConfirm: true
+    }, function() {
+        window.location.href = "registration.html";
+    });
+}
+
+function deleteUser(userId) {
+    swal({
+        title: "确定删除吗？",
+        text: "删除后该账号将无法恢复！",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "确认删除",
+        cancelButtonText: "取消",
+        closeOnConfirm: false
+    }, function() {
+        // 发送删除请求
+        $.post("/index/manager.html", {id: userId, action: 'delete', csrfmiddlewaretoken: "{{ csrf_token }}"}, function(data) {
+            if (data.success) {
+                swal("删除成功！", "账号已被永久删除", "success");
+                setTimeout(function(){window.location.reload();}, 1500);
+            } else {
+                swal("删除失败", data.msg, "error");
+            }
+        });
+    });
+}
+
+// 选题管理相关操作
+function editIssue(issueId) {
+    window.location.href = "/index/edit_issue.html?id=" + issueId;
+}
+
+function deleteIssue(issueId) {
+    swal({
+        title: "确定删除吗？",
+        text: "删除后该选题将无法恢复！",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "确认删除",
+        cancelButtonText: "取消",
+        closeOnConfirm: false
+    }, function() {
+        // 发送删除请求
+        $.post("/api/delete_issue/", {id: issueId, csrfmiddlewaretoken: "{{ csrf_token }}"}, function(data) {
+            if (data.success) {
+                swal("删除成功！", "选题已被永久删除", "success");
+                setTimeout(function(){window.location.reload();}, 1500);
+            } else {
+                swal("删除失败", data.msg, "error");
+            }
+        });
+    });
+}
+// 编辑用户信息
+function editUser(userId) {
+  // 获取用户信息并填充到模态框
+  fetch(`/index/manager.html?action=get_user&id=${userId}`)
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('editUserId').value = data.id;
+      document.getElementById('editUsername').value = data.username;
+      document.getElementById('editEmail').value = data.email;
+      document.getElementById('editRole').value = data.role;
+      document.getElementById('editStatus').value = data.is_active;
+      document.getElementById('editDisplayName').value = data.display_name || '';
+      document.getElementById('editPhone').value = data.phone || '';
+      document.getElementById('editCollege').value = data.college || '';
+      document.getElementById('editMajor').value = data.major || '';
+      $('#userEditModal').modal('show');
+    })
+    .catch(error => {
+      swal('错误', '获取用户信息失败', 'error');
+    });
+}
+// 保存用户编辑
+function saveUserEdit() {
+  const userId = document.getElementById('editUserId').value;
+  const data = {
+    id: userId,
+    action: 'edit',
+    email: document.getElementById('editEmail').value,
+    role: document.getElementById('editRole').value,
+    is_active: document.getElementById('editStatus').value === 'true',
+    display_name: document.getElementById('editDisplayName').value,
+    phone: document.getElementById('editPhone').value,
+    college: document.getElementById('editCollege').value,
+    major: document.getElementById('editMajor').value
+  };
+  
+  fetch('/index/manager.html', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      swal('成功', '用户信息已更新', 'success');
+      $('#userEditModal').modal('hide');
+      setTimeout(function(){location.reload();}, 1500);
+    } else {
+      swal('错误', data.msg, 'error');
+    }
+  })
+  .catch(error => {
+    swal('错误', '保存失败', 'error');
+  });
+}
+// 审核用户信息
+function reviewUser(userId) {
+  if (confirm('是否通过该用户的信息审核？')) {
+    fetch(`/api/user/${userId}/review/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert('审核已完成');
+      location.reload();
+    });
+  }
+}
+
+        </script>
+    </body>
+
+    </html>

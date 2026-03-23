@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/images/favicon.png" type="image/png">
+    <title>发送通知</title>
+    <link href="/static/css/icons.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/responsive.css" rel="stylesheet">
+    <style>
+        .mailbox-header {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid #007bff;
+        }
+        .action-buttons {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .action-buttons .btn {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .notice-table th {
+            background-color: #e9ecef;
+            font-weight: 600;
+        }
+        .notice-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        .unread {
+            font-weight: bold;
+            background-color: #f0f8ff !important;
+        }
+        .notice-card {
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            border: 1px solid #e9ecef;
+        }
+        .mailbox-nav li {
+            margin-bottom: 5px;
+        }
+        .mailbox-nav li a {
+            padding: 8px 12px;
+            display: block;
+            border-radius: 4px;
+            color: #333;
+            text-decoration: none;
+        }
+        .mailbox-nav li.active a {
+            background-color: #007bff;
+            color: white;
+        }
+        .mailbox-nav li a:hover {
+            background-color: #e9ecef;
+        }
+    </style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.min.js"></script>
+        <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="sticky-header">
+
+
+    <!--Start left side Menu-->
+    <div class="left-side sticky-left-side">
+
+        <!--logo-->
+        <div class="logo">
+            <a href="/index/"><img src="/static/images/logo.png" alt=""></a>
+        </div>
+
+        <div class="logo-icon text-center">
+            <a href="index.html"><img src="/static/images/logo-icon.png" alt=""></a>
+        </div>
+        <!--logo-->
+
+        <div class="left-side-inner">
+            <!--Sidebar nav-->
+                       <!--Sidebar nav-->
+        <ul class="nav nav-pills nav-stacked custom-nav">
+            <li class="menu-list"><a href="index.html"><i class="icon-home"></i> <span>首页</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="index.html"> Dashboard 1</a></li>
+                    <li><a href="dashboard2.html"> Dashboard 2</a></li>
+                </ul>
+            </li>
+            <li class="menu-list"><a href="#"><i class="icon-layers"></i> <span>选题</span></a>
+                <ul class="sub-menu-list">
+                    <li  class="active"><a href="/index/distribute.html"> 发布选题</a></li>
+                        <li><a href="/index/myissue.html"> 我的选题</a></li>
+                        <li><a href="/index/checkissue.html">查看选题</a></li>
+                        <li><a href="/index/homework_update.html">作业成绩查询</a></li>
+                        <li><a href="/index/homeworkcheck.html">教师查看作业</a></li>
+                        <li><a href="/index/homeworkwrite.html">作业编写界面</a></li>
+                </ul>
+            </li>
+            <li class="menu-list  nav-active"><a href="#"><i class="icon-envelope-open"></i> <span>通知</span></a>
+                <ul class="sub-menu-list">
+                        <li><a href="/index/inbox.html"> 发送通知</a></li>
+                        <li> <a href="/index/compose.html"> 编写通知</a></li>
+                    <li class="active"><a href="/index/message-view.html"> 查看通知</a></li>
+                </ul>
+            </li>
+            <li class="menu-list"><a href="#"><i class="icon-folder"></i> <span>个人信息</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="/profile/">个人信息</a></li>
+                </ul>
+            </li>
+            <li class="menu-list"><a href="#"><i class="icon-settings"></i> <span>管理员</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="manager.html"> 管理员</a></li>
+                <li class="menu-list"><a href="#"><i class="icon-lock"></i> <span>Login</span></a>
+                    <ul class="sub-menu-list">
+                       <li><a href="/login/"> Login </a></li>
+                       <li><a href="forgot-password.html"> Forgot Password </a></li>
+                        <li><a href="registration.html"> Registration </a></li>
+                        <li><a href="locked.html"> Lockscreen </a></li>
+                    </ul>
+                </li>
+        </ul>
+            <!--End sidebar nav-->
+
+        </div>
+    </div>
+    <!--End left side menu-->
+
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <div class="header-section">
+
+            <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+
+            <form class="searchform">
+                <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
+            </form>
+
+            <!--notification menu start -->
+            <div class="menu-right">
+                <ul class="notification-menu">
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                            <i class="fa fa-tasks"></i>
+                            <span class="badge">8</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-head pull-right">
+                            <h5 class="title">You have 8 pending task</h5>
+                            <ul class="dropdown-list">
+                            <li class="notification-scroll-list notification-list ">
+                            <!-- list item-->
+                            <a href="javascript:void(0);" class="list-group-item">
+                                <div class="media">
+                                    <div class="pull-left p-r-10">
+                                        <em class="fa  fa-shopping-cart noti-primary"></em>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">A new order has been placed.</h5>
+                                        <p class="m-0">
+                                            <small>29 min ago</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- list item-->
+                            <a href="javascript:void(0);" class="list-group-item">
+                                <div class="media">
+                                    <div class="pull-left p-r-10">
+                                        <em class="fa fa-check noti-success"></em>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">Databse backup is complete</h5>
+                                        <p class="m-0">
+                                            <small>12 min ago</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- list item-->
+                            <a href="javascript:void(0);" class="list-group-item">
+                                <div class="media">
+                                    <div class="pull-left p-r-10">
+                                        <em class="fa fa-user-plus noti-info"></em>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">New user registered</h5>
+                                        <p class="m-0">
+                                            <small>17 min ago</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- list item-->
+                            <a href="javascript:void(0);" class="list-group-item">
+                                <div class="media">
+                                    <div class="pull-left p-r-10">
+                                        <em class="fa fa-diamond noti-danger"></em>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">Database error.</h5>
+                                        <p class="m-0">
+                                            <small>11 min ago</small>
+                                        </p>
+                                    </div>
+                                </a>
+
+                                <!-- list item-->
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left p-r-10">
+                                            <em class="fa fa-cog noti-warning"></em>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">New settings</h5>
+                                            <p class="m-0">
+                                                <small>18 min ago</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="last"> <a href="#">View all notifications</a> </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="badge">4</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-head pull-right">
+                        <h5 class="title">Notifications</h5>
+                        <ul class="dropdown-list normal-list">
+                        <li class="message-list message-scroll-list">
+                        <a href="#">
+                            <span class="photo"> <img src="/static/images/users/avatar-8.jpg" class="img-circle" alt="img"></span>
+                            <span class="subject">John Doe</span>
+                            <span class="message"> New tasks needs to be done</span>
+                            <span class="time">15 minutes ago</span>
+                        </a>
+
+                        <a href="#">
+                            <span class="photo"> <img src="/static/images/users/avatar-7.jpg" class="img-circle" alt="img"></span>
+                            <span class="subject">John Doe</span>
+                            <span class="message"> New tasks needs to be done</span>
+                            <span class="time">10 minutes ago</span>
+                        </a>
+
+                        <a href="#">
+                            <span class="photo"> <img src="/static/images/users/avatar-6.jpg" class="img-circle" alt="img"></span>
+                            <span class="subject">John Doe</span>
+                            <span class="message"> New tasks needs to be done</span>
+                            <span class="time">20 minutes ago</span>
+                        </a>
+
+                        <a href="#">
+                            <span class="photo"> <img src="/static/images/users/avatar-6.jpg" class="img-circle" alt="img"></span>
+                            <span class="subject">John Doe</span>
+                            <span class="message"> New tasks needs to be done</span>
+                            <span class="time">20 minutes ago</span>
+                        </a>
+
+                        <a href="#">
+                            <span class="photo"> <img src="/static/images/users/avatar-6.jpg" class="img-circle" alt="img"></span>
+                            <span class="subject">John Doe</span>
+                            <span class="message"> New tasks needs to be done</span>
+                            <span class="time">20 minutes ago</span>
+                        </a>
+
+                        <a href="#">
+                            <span class="photo"> <img src="/static/images/users/avatar-6.jpg" class="img-circle" alt="img"></span>
+                            <span class="subject">John Doe</span>
+                            <span class="message"> New tasks needs to be done</span>
+                            <span class="time">20 minutes ago</span>
+                        </a>
+                        </li>
+                        <li class="last"> <a  href="#">All Messages</a> </li>
+                    </ul>
+                        </div>
+                    </li>
+                    <li>
+                        {% if username %}
+                        <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <img src="/static/images/users/avatar-6.jpg" alt="" />
+                            {{ username }}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                        <li> <a href="#"> <i class="fa fa-wrench"></i> Settings </a> </li>
+                        <li> <a href="/profile"> <i class="fa fa-user"></i> Profile </a> </li>
+                        <li> <a href="#"> <i class="fa fa-info"></i> Help </a> </li>
+                        <li> <a href="#"> <i class="fa fa-lock"></i> Logout </a> </li>
+                        </ul>
+                        {% endif %}
+                    </li>
+
+                </ul>
+            </div>
+            <!--notification menu end -->
+
+        </div>
+        <!-- header section end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+
+            <!--Start Page Title-->
+            <div class="page-title-box">
+                    <h4 class="page-title">发送通知</h4>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#">Email</a>
+                        </li>
+                        <li class="active">
+                            发送通知
+                        </li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+                <!--End Page Title-->
+        
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mailbox-header">
+                        <h3>待发送通知</h3>
+                        <p>管理需要发送的通知消息</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="action-buttons">
+                        <a href="compose.html" class="btn btn-primary btn-block m-b-10">撰写通知</a>
+                        <ul class="list-unstyled mailbox-nav">
+                            <li class="active"><a href="inbox.html"><i class="fa fa-inbox"></i> 待发送
+                            <span class="badge badge-success pull-right">{{ sent_notices|length }}</span></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="action-buttons">
+                        <h5>批量操作</h5>
+                        <form method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="send" class="btn btn-success btn-block m-b-5">发送选中</button>
+                            <button type="submit" name="edit" class="btn btn-warning btn-block m-b-5">编辑选中</button>
+                            <button type="submit" name="view" class="btn btn-info btn-block m-b-5">查看选中</button>
+                            <button type="submit" name="delete" class="btn btn-danger btn-block">删除选中</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="white-box notice-card">
+                        <div class="mailbox-content">
+                            <form method="post" action="">
+                                {% csrf_token %}
+                                <div class="table-responsive">
+                                    <table class="table table-hover notice-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 30px;">
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input type="checkbox" class="check-mail-all" id="select-all">
+                                                        <label for="select-all"></label>
+                                                    </div>
+                                                </th>
+                                                <th>收件人</th>
+                                                <th>主题</th>
+                                                <th>内容预览</th>
+                                                <th>时间</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% if success %}
+                                            <tr>
+                                                <td colspan="5">
+                                                    <div class="alert alert-success" role="alert">{{ success }}</div>
+                                                </td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if sent_notices and sent_notices|length > 0 %}
+                                                {% for notice in sent_notices %}
+                                                <tr class="{% if not notice.read %}unread{% endif %}">
+                                                    <td>
+                                                        <div class="checkbox checkbox-primary">
+                                                            <input type="checkbox" class="checkbox-mail" name="selected_ids" value="{{notice.id}}" id="check-{{notice.id}}">
+                                                            <label for="check-{{notice.id}}"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ notice.recipient.username }}</td>
+                                                    <td><a href="/index/message-view.html?notice_id={{ notice.id }}">{{ notice.subject }}</a></td>
+                                                    <td>{{ notice.message|truncatechars:80 }}</td>
+                                                    <td>{{ notice.timestamp|date:"m-d H:i" }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="5" class="text-center">没有待发送通知。</td>
+                                                </tr>
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        显示 {% if sent_notices %}1 - {{ sent_notices|length }}{% else %}0{% endif %} 条记录
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="btn-group pull-right">
+                                            <button type="button" class="btn btn-primary outline-btn m-r-5"><i class="fa fa-angle-left"></i></button>
+                                            <button type="button" class="btn btn-primary outline-btn"><i class="fa fa-angle-right"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+    <!-- End Wrapper-->
+
+
+        <!--Start  Footer -->
+        <footer class="footer-main">Copyright &copy; 2018.Company name All rights reserved.</footer>
+        <!--End footer -->
+
+    </div>
+    <!--End main content -->
+
+
+
+    <!--Begin core plugin -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/plugins/moment/moment.js"></script>
+    <script  src="/static/js/jquery.slimscroll.js "></script>
+    <script src="/static/js/jquery.nicescroll.js"></script>
+    <script src="/static/js/functions.js"></script>
+    <!-- End core plugin -->
+
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="/static/pages/inbox.js"></script>
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+    <script>
+        // 全选功能
+        $(document).ready(function() {
+            $('#select-all').click(function() {
+                $('.checkbox-mail').prop('checked', this.checked);
+            });
+
+            $('.checkbox-mail').change(function() {
+                if (!this.checked) {
+                    $('#select-all').prop('checked', false);
+                } else if ($('.checkbox-mail:checked').length === $('.checkbox-mail').length) {
+                    $('#select-all').prop('checked', true);
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

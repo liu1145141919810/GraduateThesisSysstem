@@ -1,0 +1,409 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/images/favicon.png" type="image/png">
+    <title></title>
+
+        <!-- BEGIN PAGE LEVEL STYLES -->
+        <link href="/static/plugins/sweetalert/sweetalert.css" rel="stylesheet"/>
+        <!-- END PAGE LEVEL STYLES -->
+        <link href="/static/css/icons.css" rel="stylesheet">
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/style.css" rel="stylesheet">
+        <link href="/static/css/responsive.css" rel="stylesheet">
+        
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="js/html5shiv.min.js"></script>
+            <script src="js/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body class="sticky-header">
+
+        <!--Start left side Menu-->
+        <div class="left-side sticky-left-side">
+
+            <!--logo-->
+            <div class="logo">
+                <a href="index.html"><img src="/static/images/logo.png" alt=""></a>
+            </div>
+
+            <div class="logo-icon text-center">
+                <a href="index.html"><img src="/static/images/logo-icon.png" alt=""></a>
+            </div>
+            <!--logo-->
+
+            <div class="left-side-inner">
+                <!--Sidebar nav-->
+                     <ul class="nav nav-pills nav-stacked custom-nav">
+                <li class="menu-list"><a href="index.html"><i class="icon-home"></i> <span>首页</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="index.html"> Dashboard 1</a></li>
+                        <li><a href="dashboard2.html"> Dashboard 2</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="#"><i class="icon-layers"></i> <span>选题</span></a>
+                    <ul class="sub-menu-list">
+                        <li  class="active"><a href="/index/distribute.html"> 发布选题</a></li>
+                            <li><a href="/index/myissue.html"> 我的选题</a></li>
+                            <li><a href="/index/checkissue.html">查看选题</a></li>
+                            <li><a href="/index/homework_update.html">作业成绩查询</a></li>
+                            <li><a href="/index/homeworkcheck.html">教师查看作业</a></li>
+                            <li><a href="/index/homeworkwrite.html">作业编写界面</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list  nav-active"><a href="#"><i class="icon-envelope-open"></i> <span>通知</span></a>
+                    <ul class="sub-menu-list">
+                            <li><a href="/index/inbox.html"> 发送通知</a></li>
+                            <li> <a href="/index/compose.html"> 编写通知</a></li>
+                        <li class="active"><a href="/index/message-view.html"> 查看通知</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="#"><i class="icon-folder"></i> <span>个人信息</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="/profile/">个人信息</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="#"><i class="icon-settings"></i> <span>管理员</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="manager.html"> 管理员</a></li>
+                    </ul>
+                <li class="menu-list"><a href="#"><i class="icon-lock"></i> <span>Login</span></a>
+                    <ul class="sub-menu-list">
+                       <li><a href="/login/"> Login </a></li>
+                       <li><a href="forgot-password.html"> Forgot Password </a></li>
+                        <li><a href="registration.html"> Registration </a></li>
+                        <li><a href="locked.html"> Lockscreen </a></li>
+                    </ul>
+                </li>
+            </ul>
+                <!--End sidebar nav-->
+
+            </div>
+        </div>
+        <!--End left side menu-->
+        
+        
+        <!-- main content start-->
+        <div class="main-content" >
+
+            <!-- header section start-->
+            <div class="header-section">
+
+                <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+
+                <form class="searchform">
+                    <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
+                </form>
+
+                <!--notification menu start -->
+                <div class="menu-right">
+                    <ul class="notification-menu">
+                        <li>
+                            <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                                <i class="fa fa-tasks"></i>
+                                <span class="badge">8</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-head pull-right">
+                                <h5 class="title">You have 8 pending task</h5>
+                                <ul class="dropdown-list">
+                                <li class="notification-scroll-list notification-list ">
+                                <!-- list item-->
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left p-r-10">
+                                            <em class="fa  fa-shopping-cart noti-primary"></em>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">A new order has been placed.</h5>
+                                            <p class="m-0">
+                                                <small>29 min ago</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                        
+                                <!-- list item-->
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left p-r-10">
+                                            <em class="fa fa-check noti-success"></em>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">Databse backup is complete</h5>
+                                            <p class="m-0">
+                                                <small>12 min ago</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                        
+                                <!-- list item-->
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left p-r-10">
+                                            <em class="fa fa-user-plus noti-info"></em>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">New user registered</h5>
+                                            <p class="m-0">
+                                                <small>17 min ago</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                        
+                                    <!-- list item-->
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left p-r-10">
+                                            <em class="fa fa-diamond noti-danger"></em>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">Database error.</h5>
+                                            <p class="m-0">
+                                                <small>11 min ago</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                        
+                                <!-- list item-->
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left p-r-10">
+                                            <em class="fa fa-cog noti-warning"></em>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">New settings</h5>
+                                            <p class="m-0">
+                                                <small>18 min ago</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                </li>
+                                <li class="last"> <a href="#">View all notifications</a> </li>
+                                </ul>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="badge">4</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-head pull-right">
+                            <h5 class="title">Notifications</h5>
+                            <ul class="dropdown-list normal-list">
+                            <li class="message-list message-scroll-list">
+                            <a href="#">
+                                <span class="photo"> <img src="/static/images/users/avatar-8.jpg" class="img-circle" alt="img"></span>
+                                <span class="subject">John Doe</span>
+                                <span class="message"> New tasks needs to be done</span>
+                                <span class="time">15 minutes ago</span>
+                            </a>
+                            
+                            <a href="#">
+                                <span class="photo"> <img src="/static/images/users/avatar-7.jpg" class="img-circle" alt="img"></span>
+                                <span class="subject">John Doe</span>
+                                <span class="message"> New tasks needs to be done</span>
+                                <span class="time">10 minutes ago</span>
+                            </a>
+                            
+                            <a href="#">
+                                <span class="photo"> <img src="/static/images/users/avatar-6.jpg" class="img-circle" alt="img"></span>
+                                <span class="subject">John Doe</span>
+                                <span class="message"> New tasks needs to be done</span>
+                                <span class="time">20 minutes ago</span>
+                            </a>
+                            
+                            <a href="#">
+                                <span class="photo"> <img src="/static/images/users/avatar-6.jpg" class="img-circle" alt="img"></span>
+                                <span class="subject">John Doe</span>
+                                <span class="message"> New tasks needs to be done</span>
+                                <span class="time">20 minutes ago</span>
+                            </a>
+                            
+                            <a href="#">
+                                <span class="photo"> <img src="/static/images/users/avatar-6.jpg" class="img-circle" alt="img"></span>
+                                <span class="subject">John Doe</span>
+                                <span class="message"> New tasks needs to be done</span>
+                                <span class="time">20 minutes ago</span>
+                            </a>
+                            
+                            <a href="#">
+                                <span class="photo"> <img src="/static/images/users/avatar-6.jpg" class="img-circle" alt="img"></span>
+                                <span class="subject">John Doe</span>
+                                <span class="message"> New tasks needs to be done</span>
+                                <span class="time">20 minutes ago</span>
+                            </a>
+                            </li>
+                            <li class="last"> <a  href="#">All Messages</a> </li>
+                        </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <img src="/static/images/users/avatar-6.jpg" alt="" />
+                                {{request.session.username}}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                            <li> <a href="#"> <i class="fa fa-wrench"></i> Settings </a> </li>
+                            <li> <a href="/profile/"> <i class="fa fa-user"></i> 个人信息 </a> </li>
+                            <li> <a href="#"> <i class="fa fa-info"></i> Help </a> </li>
+                            <li> <a href="#"> <i class="fa fa-lock"></i> Logout </a> </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+                <!--notification menu end -->
+
+            </div>
+            <!-- header section end-->
+
+
+            <!--body wrapper start-->
+            <div class="wrapper">
+                
+            <!--Start Page Title-->
+            <div class="page-title-box">
+                    <h4 class="page-title">我的选题总集</h4>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#">UI Elements</a>
+                        </li>
+                        <li class="active">
+                            我的选题总集
+                        </li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+                <!--End Page Title-->          
+            
+                <!--Start row -->
+            {%if message%}
+                    {%for msg in message %}
+                    <div class="button-wrap">
+                    <button type="button" class="btn btn-success btn-block">题目:{{msg.title}}</button>
+                    <div class="btn-group-vertical m-b-6">
+                            <button type="button" class="btn btn-primary">学院</button>
+                        <input type="text" class="form-control" id="to" name="to" value="{{ msg.profession}}" readonly>
+                    </div>
+                    <div class="btn-group-vertical m-b-6">
+                            <button type="button" class="btn btn-success">老师</button>
+                        <input type="text" class="form-control" id="teacher" name="teacher" value="{{ msg.teacher}}" readonly>
+                    </div>
+            
+                    <div class="btn-group-vertical m-b-6">
+                            <button type="button" class="btn btn-warning">当前容量</button>
+                        <input type="text" class="form-control" id="teacher" name="teacher" value="{{ msg.scale }}" readonly>
+                    </div>
+                    <div class="btn-group-vertical m-b-6">
+                        <button type="button" class="btn btn-danger">截至年</button>
+                        <input type="text" class="form-control" id="teacher" name="teacher" value="{{ msg.timestamp.year }}" readonly>
+                    </div>
+                    <div class="btn-group-vertical m-b-6">
+                        <button type="button" class="btn btn-danger">截至日</button>
+                        <input type="text" class="form-control" id="teacher" name="teacher" value="{{msg.timestamp.month}}-{{ msg.timestamp.day }}" readonly>
+                    </div>
+                    <div class="btn-group-vertical m-b-6">
+                        <button type="button" class="btn btn-danger">截至时刻</button>
+                        <input type="text" class="form-control" id="teacher" name="teacher" value="{{ msg.timestamp.hour }}:{{ msg.timestamp.minute }}" readonly>
+                    </div>
+                    <button type="button" class="btn btn-default btn-block">内容介绍</button>
+                    <!--文字输入框-->
+                    <textarea class="form-control" id="introduction" name="introduction" rows="8" readonly>{{msg.introduction}}</textarea>
+                    <!--提交按钮-->
+                    <div class="item">
+                      <button type="button" class="btn btn-default btn-block">已编写内容</button>
+                    <!--文字输入框-->
+                    <textarea class="form-control" id="introduction" name="introduction" rows="8" readonly>{{msg.write_content}}</textarea>
+                <button id="edit_it" class="btn btn-primary btn-block " value="{{msg.write_id}}">编写</button>
+                </div>
+                    {% endfor %}
+                    {%else%}
+                    <div class="button-wrap">
+                            <button type="button" class="btn btn-default">暂无选择选题</button>
+                        </div>
+                    {% endif %}
+                    
+                    </div>
+            <!-- End Wrapper-->
+
+
+            <!--Start  Footer -->
+            <footer class="footer-main">Copyright &copy; 2018.Company name All rights reserved.</footer>	
+            <!--End footer -->
+
+        </div>
+        <!--End main content -->
+        
+
+
+        <!--Begin core plugin -->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/plugins/moment/moment.js"></script>
+        <script  src="/static/js/jquery.slimscroll.js "></script>
+        <script src="/static/js/jquery.nicescroll.js"></script>
+        <script src="/static/js/functions.js"></script>
+        <!-- End core plugin -->
+
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src="/static/plugins/sweetalert/sweet-alert.js"></script>
+        <script src="/static/pages/jquery.sweet-alert.custom.js"></script>
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const enterButton = document.querySelectorAll('#edit_it');
+                enterButton.forEach(function(button) {
+                    const textarea=button.closest('.item').querySelector('textarea');
+                    button.addEventListener('click', function() {
+                    console.log("*****",button.getAttribute('value'));
+                    console.log("*****",textarea);
+                    if(button.textContent=='编写'){
+                        enterEdit(textarea);
+                        button.textContent='提交';
+                    }
+                    else if(button.textContent=='提交'){
+                        button.textContent='编写';
+                        console.log("提交内容为：",textarea.value);
+                        console.log("内容ID为：",button.getAttribute('value'));
+                        fetch('/index/myissue.html', {
+                            method: 'POST',
+                            headers: {
+                                "Content-Type":"application/json",
+                                "X-CSRFToken": "{{ csrf_token }}"
+                            },
+                           body:JSON.stringify({
+                               'content_id':button.getAttribute('value'),
+                               'content':textarea.value
+                           })
+                        })     
+                        textarea.setAttribute('readonly','readonly');
+                    }
+            });
+        });
+        })
+        function enterEdit(textarea){
+            textarea.removeAttribute('readonly');
+        }
+        </script>
+    </body>
+
+    </html>
