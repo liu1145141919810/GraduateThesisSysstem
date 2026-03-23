@@ -4,6 +4,8 @@
 
 ## 技术栈
 
+架构：Django 5.2.7, 主要语言：Python ,数据库：PostgreSQL ,加密：cryptography 前端：JavaScript等
+
 ## 项目结构
 
 ## 核心功能
