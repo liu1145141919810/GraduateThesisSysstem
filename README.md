@@ -80,10 +80,25 @@ DB_PASSWORD=replace-me
 DB_HOST=localhost
 DB_PORT=5432
 
-# Encryption
-ENCRYPTION_KEY=replace-me-with-32-bytes-key-or-a-safe-string
 ```
 
+# Encryption
+ENCRYPTION_KEY=replace-me-with-32-bytes-key-or-a-safe-string
+
+Step3: settings.py设置环境变量读取
+
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+
+Step4： 本机已经安装好Postgres的前提下执行
+
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
+Step5: 启动项目
+
+python manage.py runserver [port number]
 
 ## 核心功能
 
