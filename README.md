@@ -190,6 +190,28 @@ python manage.py runserver [port number]
 
 注意，当发送方和接收方都删除此邮件时，我们认为这个邮件已经没有再存在的必要，将通过数据库的约束规则自动将其删除
 
+### 选题发布,选择,提交和评分
+
+<p align="center">
+  <img src="pictures/p16.png" width="500"/>
+</p>
+<p align="center">
+  <img src="pictures/p17.png" width="500"/>
+</p>
+<p align="center">
+  <img src="pictures/p18.png" width="500"/>
+</p>
+<p align="center">
+  <img src="pictures/p19.png" width="500"/>
+</p>
+<p align="center">
+  <img src="pictures/p20.png" width="500"/>
+</p>
+<p align="center">
+  <img src="pictures/p21.png" width="500"/>
+</p>
+
+
 ## 更新日志
 
 ### 0.0
