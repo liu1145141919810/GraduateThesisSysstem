@@ -109,17 +109,44 @@ python manage.py runserver [port number]
 </p>
 
 注意，这里默认邮箱由学校分发，@teacher.com是老师，@student.com是学生，@admin.com是管理员
-我们采用了cryptography将账号数据加密存储，提高了安全性
+我们采用了cryptography将账号数据加密存储，提高了安全性.同时默认Postgres管理员可以直接从后台和设计的管理员用前台对于账户进行调控
 
 ### 导航栏和个人信息
 
 
 <p align="center">
-  <img src="pictures/p1.png" width="300"/>
-  <img src="pictures/p2.png" width="300"/>
+  <img src="pictures/p3.png" width="300"/>
+  <img src="pictures/p4.png" width="300"/>
 </p>
 
 不同属性用户的导航可见不同，其中对于用户信息中非关键的部分用户可以自己修改
+
+### 管理员操作面板
+
+<p align="center">
+  <img src="pictures/p5.png" width="300"/>
+</p>
+
+管理员进入操作页面后，可以查看最近的用户登录之情况，并针对性地在账号管理页面中发起“
+启用，禁用，删除”操作，被禁用的用户将无法登录
+
+### 教师端学生选题成绩统计
+
+<p align="center">
+  <img src="pictures/p6.png" width="300"/>
+</p>
+
+教师查看自己发布的指导选题中的学生得分统计，将包括柱状统计和饼图统计
+
+### 教师的选题发布/修改/删除和任务批改
+
+<p align="center">
+  <img src="pictures/p7.png" width="300"/>
+  <img src="pictures/p8.png" width="300"/>
+  <img src="pictures/p9.png" width="300"/>
+</p>
+
+教师界面的设计重在课题和作业的管理。进入教师首页，首先呈现最近的选题动态，例如新增的学生分配情况或提交的作业数量，方便教师跟踪重要事项。课题管理页面采用卡片式布局，每张课题卡片展示课题标题、规模、状态和截止时间等关键信息，点击后进入详情页，可对课题内容进行修改、扩展或关闭操作。作业批改页面则突出效率，采用列表 + 批改视图的形式，左侧列出提交的作业，右侧显示当前作业内容与评分输入框，保证教师能够轻松切换与批改。
 
 ## 更新日志
 
