@@ -100,9 +100,26 @@ Step5: 启动项目
 
 python manage.py runserver [port number]
 
-## 核心功能
+## 核心功能和演示
 
-## 演示效果
+### 注册和登录
+<p align="center">
+  <img src="pictures/p1.png" width="300"/>
+  <img src="pictures/p2.png" width="300"/>
+</p>
+
+注意，这里默认邮箱由学校分发，@teacher.com是老师，@student.com是学生，@admin.com是管理员
+我们采用了cryptography将账号数据加密存储，提高了安全性
+
+### 导航栏和个人信息
+
+
+<p align="center">
+  <img src="pictures/p1.png" width="300"/>
+  <img src="pictures/p2.png" width="300"/>
+</p>
+
+不同属性用户的导航可见不同，其中对于用户信息中非关键的部分用户可以自己修改
 
 ## 更新日志
 
