@@ -195,22 +195,38 @@ python manage.py runserver [port number]
 <p align="center">
   <img src="pictures/p16.png" width="500"/>
 </p>
+
+教师端点击“选题->发布选题”在顶部的填写栏分别输入“标题，容量，截止日期，内容介绍”，而后通过“提交”即可将该选题录入系统并展示给学生
+
 <p align="center">
   <img src="pictures/p17.png" width="500"/>
 </p>
+
+学生端点击“选题->我的选题”后进入界面，选择心仪的选题，点击右下角的“选题”，即可像系统提交选择，这个选题会进入“我的选题”中。注意，当选题容量为0，截止日期已到或者该选题已经被该学生选择过后，再次点击选题操作将弹出拒绝信息。
+
 <p align="center">
   <img src="pictures/p18.png" width="500"/>
 </p>
+
+用户在“选题-我的选题”页面可以查看你所有自己的选题，选择想要提交内容的一个，点击蓝色编写按钮，即可开始编写模式
+
 <p align="center">
   <img src="pictures/p19.png" width="500"/>
 </p>
+
+将提交内容输入到“已编写内容”一栏后，点击提交，学生的选题作业内容即会被录入到系统中
+
 <p align="center">
   <img src="pictures/p20.png" width="500"/>
 </p>
+
+教师点击“批改”蓝色按钮，将进入打分模式，此时可以将评语和分数分别输入评语框和打分框的下方，然后提交即可（依然是左下蓝色按钮，只不过其变成了“提交”），注意，超出截止日期的提交不会被推送到教师端上
+
 <p align="center">
   <img src="pictures/p21.png" width="500"/>
 </p>
 
+学生点击“选题-作业成绩查询”即可以如上图的只读方式查看本选题得到的教师评价和分数。同时，教师可以进入自己的“选题-作业成绩查询”界面，查看统计得分情况和提交总数。
 
 ## 更新日志
 
@@ -584,4 +600,6 @@ request.session.pop('error', None)
 2025     10-01 00：00
 
 ### 41方便的触发操作
+```
 <button class="btn btn-xs btn-info" onclick="editUser({{ user.id }})">编辑</button>
+```
