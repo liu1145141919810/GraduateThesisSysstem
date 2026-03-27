@@ -124,7 +124,7 @@ python manage.py runserver [port number]
 ### 管理员操作面板
 
 <p align="center">
-  <img src="pictures/p5.png" width="300"/>
+  <img src="pictures/p5.png" width="500"/>
 </p>
 
 管理员进入操作页面后，可以查看最近的用户登录之情况，并针对性地在账号管理页面中发起“
@@ -133,7 +133,7 @@ python manage.py runserver [port number]
 ### 教师端学生选题成绩统计
 
 <p align="center">
-  <img src="pictures/p6.png" width="300"/>
+  <img src="pictures/p6.png" width="500"/>
 </p>
 
 教师查看自己发布的指导选题中的学生得分统计，将包括柱状统计和饼图统计
@@ -141,12 +141,54 @@ python manage.py runserver [port number]
 ### 教师的选题发布/修改/删除和任务批改
 
 <p align="center">
-  <img src="pictures/p7.png" width="300"/>
-  <img src="pictures/p8.png" width="300"/>
-  <img src="pictures/p9.png" width="300"/>
+  <img src="pictures/p7.png" width="500"/>
+</p>
+<p align="center">
+  <img src="pictures/p8.png" width="500"/>
+</p>
+<p align="center">
+  <img src="pictures/p9.png" width="500"/>
 </p>
 
 教师界面的设计重在课题和作业的管理。进入教师首页，首先呈现最近的选题动态，例如新增的学生分配情况或提交的作业数量，方便教师跟踪重要事项。课题管理页面采用卡片式布局，每张课题卡片展示课题标题、规模、状态和截止时间等关键信息，点击后进入详情页，可对课题内容进行修改、扩展或关闭操作。作业批改页面则突出效率，采用列表 + 批改视图的形式，左侧列出提交的作业，右侧显示当前作业内容与评分输入框，保证教师能够轻松切换与批改。
+
+### 学生选题/完成/提交评分界面
+
+<p align="center">
+  <img src="pictures/p10.png" width="500"/>
+</p>
+<p align="center">
+  <img src="pictures/p11.png" width="500"/>
+</p>
+<p align="center">
+  <img src="pictures/p12.png" width="500"/>
+</p>
+
+学生界面强调简洁和任务导向。首页以“待完成任务列表”为核心，学生可以直观看到所有分配课题的截止时间，颜色标注优先级（例如红色警示即将到期）。点击课题进入作业提交页面，页面采用模块化布局，上方显示课题要求，底部为上传区域，文件上传或内容编辑后立即显示操作提示。查看反馈页面设计成卡片式，每份已批改选题对应一个独立卡片，清晰呈现评分与评语，方便学生反思和改进。
+
+### 邮件的发送和接收
+
+ 所用角色可以采用信箱相互通知，输入发送人ID以及发送内容即可完成网上的快速沟通，有助于提升论文评审和改进的效率，同时方便所有人接收有关选题和系统的重要通知
+
+ 通过填写收件人，主题，和发送的邮件内容向目标发送通知邮件，编辑的操作界面如下所示
+
+<p align="center">
+  <img src="pictures/p13.png" width="500"/>
+</p>
+
+ 完成填写后，该内容会进，入到待发送邮箱中，用户可以选择发送，查看，删除等操作处理邮件。邮件发送后和被接收方阅读后，在“已读否”和“已发送”一栏的星星会被点亮
+
+<p align="center">
+  <img src="pictures/p14.png" width="500"/>
+</p>
+
+完成后通知发送方会接收到用户发送的邮件，可以降至进行查看或者删除
+
+<p align="center">
+  <img src="pictures/p15.png" width="500"/>
+</p>
+
+注意，当发送方和接收方都删除此邮件时，我们认为这个邮件已经没有再存在的必要，将通过数据库的约束规则自动将其删除
 
 ## 更新日志
 
