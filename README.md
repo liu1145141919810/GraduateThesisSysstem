@@ -80,10 +80,10 @@ DB_PASSWORD=replace-me
 DB_HOST=localhost
 DB_PORT=5432
 
-```
-
 # Encryption
 ENCRYPTION_KEY=replace-me-with-32-bytes-key-or-a-safe-string
+
+```
 
 Step3: settings.py设置环境变量读取
 
