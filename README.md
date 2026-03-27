@@ -309,6 +309,8 @@ email = models.CharField(max_length=100, unique=True)      # 邮箱唯一
 username=models.ForeignKey(tb_login,on_delete=models.CASCADE)
 
 ### 5 加入警告详细
+
+```
 {% if error %}
     <div class="alert alert-danger alert-dismissible fade in" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -317,25 +319,30 @@ username=models.ForeignKey(tb_login,on_delete=models.CASCADE)
         <strong>错误！</strong> {{ error }}
     </div>
 {% endif %}
+```
 
 ### 6 密码加密
 
 加密：encrypted_pwd = encrypt_password(pwd) # ← 加密密码
+
 解码：decrypted = cipher.decrypt(encrypted_pwd.encode())
 
 ### 7 redirect
 
 避免路径累积
+
 return redirect("/index/")
 
 ### 8 会话数据传递
 
+```
 request.session['user_id'] = login_record.id
                 request.session['username'] = login_record.username
                 request.session['email'] = login_record.email
                 request.session['role'] = login_record.role
                 tb_login_log.objects.create(username=login_record, status='success')
                 return redirect("/index/")
+```
 
 ### 9 会话数据在.html使用
 
@@ -351,18 +358,22 @@ path("index/<str:page>.html", views.index_page, name="index_page"),
 
 ### 12 记录，通知页面静态文件
 
+```
 <li><a href="inbox.html">系统通知</a></li>
 <li><a href="compose.html">发送通知</a></li>
 <li><a href="message-view.html">查看通知</a></li>
+```
 
 ### 13 POST方法实现
 
+```
 <form method="POST">
     {% csrf_token %}
     <div class="pull-right">
         <input id="signup-btn" type="submit" value="Sign Up" class="btn btn-primary btn-block">
     </div>
 </form>
+```
 
 ### 14 request找到目标：
 
@@ -377,17 +388,22 @@ path("index/<str:page>.html", views.index_page, name="index_page"),
 
 #### 先备份数据库和 migrations 目录
 Copy-Item .\db.sqlite3 .\db.sqlite3.bak
+
 Copy-Item .\app00\migrations .\app00\migrations.bak -Recurse
 
 #### 列出迁移文件，确认有哪些（检查是否有 0008 / 0009）
 Get-ChildItem .\app00\migrations\ -Name
 
 #### 删除 0009 及以后的迁移（示例删除 0009）
+
 Remove-Item .\app00\migrations\0009_*.py
+
 Remove-Item .\app00\migrations\__pycache__\0009_*.py -ErrorAction SilentlyContinue
 
 #### 重新生成迁移并应用
+
 python manage.py makemigrations app00
+
 python manage.py migrate
 
 
@@ -401,14 +417,17 @@ return redirect("/index/inbox.html")
 
 ### 19 html在Dijango里可以使用如下的循环
 
+```
 {% for item in items %}
     <p>{{ item }}</p>
 {% endfor %}
+```
 
 ### 20 测试：重新运行不需要打开新的界面
 
 ### 21 实现返回选中ID:
 
+```
 html:
 <div class="checkbox">
     <input type="checkbox" class="checkbox-mail" name="selected_ids" value="{{ notice.id }}">
@@ -416,6 +435,7 @@ html:
 </div>
 会返回一个序列
 之后使用 selected_ids = request.POST.getlist('selected_ids')检索即可
+```
 
 ### 22 包含多行记录的查询集示例
 qs = tb_notice.objects.filter(id__in=ids, host=user)
@@ -431,6 +451,7 @@ qs.delete()
 
 ### 26 POST提交
 
+```
  editButton.addEventListener('click', function() {
             if(editButton.textContent=="确定"){
                 fetch("/profile/",{
@@ -446,8 +467,11 @@ qs.delete()
                     })
                 editButton.textContent = "编辑信息";  // 或 innerText 也行
             }})
+```
 
 ### 27 编辑方法，先选再对每个做...
+
+```
 function enterEdit(){//向目标输入
         //console打印当前信息
         console.log("Entering edit mode");
@@ -458,12 +482,15 @@ function enterEdit(){//向目标输入
         });
     }
     </script>
+```
 
 ### 28 结构体传输
 
+```
  //打印payload以调试
         data= json.loads(request.body)
         print("打印体",data)
+```
 
 ### 29 优秀的重定位
 
@@ -471,21 +498,26 @@ function enterEdit(){//向目标输入
 
 ### 30 后台函数
 
+```
 @receiver(post_save, sender=tb_notice)
 def auto_delete_notice(sender, instance, **kwargs):
     # 如果两个显示都关闭，则自动删除这条消息
     if not instance.showsend and not instance.showreceive:
         instance.delete()
+```
+
 触发
+
 m.save()
 
-<<<<<<< HEAD
 ### 31 crsf提交
 
+```
 headers: {
     'Content-Type': 'application/json',
     'X-CSRFToken': '{{ csrf_token }}'  // ⭐ Django 必须要这个
 },
+```
 
 ### 32 加入交互数据处理传输
 
@@ -495,6 +527,7 @@ headers: {
 
 后
 return JsonResponse({"status": "ok"})
+
 前
 then(...),then(...)
 
@@ -505,6 +538,7 @@ qs.update(showsend=False)
 
 ### 35 错误提示
 
+```
 1 {% if error %}
     <div class="alert alert-danger alert-dismissible fade in" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -517,7 +551,8 @@ qs.update(showsend=False)
     return render(request, "index.html", {"error": error})
 3  if role!=1:
     request.session['error'] = '只有教师才能进行课题分配操作'
-    return redirect("/index/")   
+    return redirect("/index/")  
+```
 
 ### 36 文段输入框
 
@@ -526,10 +561,12 @@ qs.update(showsend=False)
 
  ### 37 时间处理
 
+```
  deadline_str = data['deadline_year'] + data['deadline_day'] + data['deadline_time']
-# deadline_str = "2025-12-08T14:00:00"
+#deadline_str = "2025-12-08T14:00:00"
 
 deadline_dt = datetime.fromisoformat(deadline_str)
+```
 
 ### 38 防止过时信息重复
 
@@ -537,11 +574,12 @@ request.session.pop('error', None)
 
 
 ### 39 重要：警告的搭建
+```
 1.POST机制将之加入request.session
 2.后端触发器写.then(...reload)
 3.前端GET，做error=request.session.pop('error', None),然后return render({'error':error})
 4.前端写{% if error %}
-
+```
 ### 40时间填入标准形式
 2025     10-01 00：00
 
